@@ -1,24 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import {SocketProvider} from "./component/useSocket";
+import React from "react";
+import {UserStatusProvider} from "./component/userStatus/useUserStatus";
+import UserStatus from "./component/userStatus/UserStatus";
+import Container from "@material-ui/core/Container";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <SocketProvider>
+      <UserStatusProvider>
+        <Container maxWidth={false}>
+          <UserStatus/>
+        </Container>
+      </UserStatusProvider>
+    </SocketProvider>
   );
 }
 
