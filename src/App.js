@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {Switch, Route, Redirect, useHistory} from 'react-router-dom';
+
+import Login from './LoginPage';
+import Register from './RegisterPage';
+import Home from './HomePage';
+import tokenService from './service/token-service';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [userID, setUserID] = useState(tokenService.getUserID());
+    const history = useHistory();
+
+    return (
+        <Switch>
+            <Route exact path="/register">
+                {
+                    userID ?
+                        <Redirect to="/"/> :
+                        <Register onSuccess={() => {
+                            history.replace("/login");
+                        }}/>
+                }
+            </Route>
+
+            <Route exact path="/login">
+                {
+                    userID ?
+                        <Redirect to="/"/> :
+                        <Login onSuccess={() => {
+                            console.log(tokenService.getUserID());
+                            setUserID(tokenService.getUserID());
+                        }}/>
+                }
+            </Route>
+
+            <Route exact path="/">
+                {
+                    userID ?
+                        <Home userID={userID}
+                              logoutAction={() => {
+                                  tokenService.deleteToken();
+                                  setUserID(null);
+                              }}/> :
+                        <Redirect to="/register"/>
+                }
+            </Route>
+        </Switch>
+    );
 }
 
 export default App;
