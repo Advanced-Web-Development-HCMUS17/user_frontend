@@ -3,7 +3,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {io} from "socket.io-client";
 import {useAuth} from "./useAuth";
 
-const SOCKET_URL = "ws://localhost:3030";
+const SOCKET_URL = process.env.REACT_APP_SOCKET_URL;
 
 const SocketContext = React.createContext({
   socket: null
