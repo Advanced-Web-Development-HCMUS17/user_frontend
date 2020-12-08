@@ -19,13 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8751b39c-aee8-427a-98bd-860b6f777286" name="Default Changelist" comment="+ init project">
-      <change afterPath="$PROJECT_DIR$/src/component/useSocket.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/userStatus/UserStatus.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/userStatus/useUserStatus.jsx" afterDir="false" />
+    <list default="true" id="8751b39c-aee8-427a-98bd-860b6f777286" name="Default Changelist" comment="+ use socket, + useUserStatus, +set up socket.io">
+      <change afterPath="$PROJECT_DIR$/src/component/NavigationBar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/userStatus/UserStatus.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/userStatus/UserStatus.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +85,9 @@
       <updated>1607155502839</updated>
       <workItem from="1607155503901" duration="418000" />
       <workItem from="1607238115601" duration="8510000" />
-      <workItem from="1607347754566" duration="7478000" />
+      <workItem from="1607347754566" duration="8407000" />
+      <workItem from="1607391786579" duration="3953000" />
+      <workItem from="1607438573860" duration="383000" />
     </task>
     <task id="LOCAL-00001" summary="+ init project">
       <created>1607155722102</created>
@@ -102,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607155730855</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="+ use socket, + useUserStatus, +set up socket.io">
+      <created>1607355889350</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1607355889350</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,7 +131,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="+ init project" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ init project" />
+    <MESSAGE value="+ use socket, + useUserStatus, +set up socket.io" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ use socket, + useUserStatus, +set up socket.io" />
   </component>
   <component name="WindowStateProjectService">
     <state x="582" y="182" key="#Inspections" timestamp="1607355750326">
@@ -134,22 +143,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="664" y="303" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607238145686" />
-    <state width="1893" height="267" key="GridCell.Tab.0.bottom" timestamp="1607350277754">
+    <state width="1893" height="267" key="GridCell.Tab.0.bottom" timestamp="1607394630007">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1893" height="267" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607350277754" />
-    <state width="1893" height="267" key="GridCell.Tab.0.center" timestamp="1607350277753">
+    <state width="1893" height="267" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607394630007" />
+    <state width="1893" height="267" key="GridCell.Tab.0.center" timestamp="1607394630007">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1893" height="267" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607350277753" />
-    <state width="1893" height="267" key="GridCell.Tab.0.left" timestamp="1607350277753">
+    <state width="1893" height="267" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607394630007" />
+    <state width="1893" height="267" key="GridCell.Tab.0.left" timestamp="1607394630007">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1893" height="267" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607350277753" />
-    <state width="1893" height="267" key="GridCell.Tab.0.right" timestamp="1607350277754">
+    <state width="1893" height="267" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607394630007" />
+    <state width="1893" height="267" key="GridCell.Tab.0.right" timestamp="1607394630007">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1893" height="267" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607350277754" />
+    <state width="1893" height="267" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607394630007" />
     <state width="1893" height="331" key="GridCell.Tab.1.bottom" timestamp="1607275026757">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -198,9 +207,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1893" height="331" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
-    <state x="452" y="188" key="Vcs.Push.Dialog.v2" timestamp="1607155738853">
+    <state x="452" y="188" key="Vcs.Push.Dialog.v2" timestamp="1607355891473">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="452" y="188" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607155738853" />
+    <state x="452" y="188" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607355891473" />
   </component>
 </project>
