@@ -40,7 +40,7 @@ export default function UserStatus({props}) {
               <ListItemIcon>
                 <Person/>
               </ListItemIcon>
-              <ListItemText primary={user.id} secondary={user.user}/>
+              <ListItemText primary={user.user.username} secondary={user.user.email}/>
             </ListItem>))
         }
       </List></Box>
