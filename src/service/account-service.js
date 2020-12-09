@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 async function register(username, email, password) {
-  console.log(`${process.env.REACT_APP_API_URL}/users/register`);
+  console.log(`${API_URL}/users/register`);
   try {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/users/register`, {
+    const res = await axios.post(`${API_URL}/users/register`, {
       username: username, email: email, password: password
     });
     if (res.status === 201) {
@@ -18,7 +20,7 @@ async function register(username, email, password) {
 
 async function login(email, password) {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/users/login`, {email: email, password: password});
+    const res = await axios.post(`${API_URL}/users/login`, {email: email, password: password});
     return res.data;
   } catch (e) {
     return null;
@@ -27,7 +29,7 @@ async function login(email, password) {
 
 async function getUserInfo(token) {
   try {
-    const res = await axios.get(`${process.env.REACT_APP_API_URL}/users/info`, {
+    const res = await axios.get(`${API_URL}/users/info`, {
       headers:
         {
           "Authorization": token
