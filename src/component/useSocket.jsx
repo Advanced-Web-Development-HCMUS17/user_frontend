@@ -6,7 +6,8 @@ import {useAuth} from "./useAuth";
 const SOCKET_URL = process.env.REACT_APP_SOCKET_URL;
 
 const SocketContext = React.createContext({
-  socket: null
+  socket: null,
+  isInitialized: false
 });
 
 const {Provider} = SocketContext;
@@ -19,11 +20,11 @@ export function SocketProvider({children}) {
 
 
   useEffect(() => {
-    setSocket(io(SOCKET_URL, {auth: {token: token}}));
-  }, [isAuth, token])
+
+  }, [token])
 
   return (<Provider
-    value={socket}>{children}</Provider>)
+    value={{socket}}>{children}</Provider>)
 }
 
 export const useSocket = () => useContext(SocketContext);
