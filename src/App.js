@@ -1,5 +1,5 @@
 import './App.css';
-import {SocketProvider} from "./component/useSocket";
+import {SocketProvider} from "./component/socketHook/useSocket";
 import React, {useState} from "react";
 import {UserStatusProvider} from "./component/userStatus/useUserStatus";
 import UserStatus from "./component/userStatus/UserStatus";
@@ -11,15 +11,14 @@ import IndexComponent from "./component";
 function App() {
   return (
     <AuthProvider>
-      {/*<SocketProvider>*/}
+      <SocketProvider>
         <UserStatusProvider>
           <NavigationBar/>
           <Container maxWidth={false}>
-            <UserStatus/>
+            <IndexComponent/>
           </Container>
-          <IndexComponent/>
         </UserStatusProvider>
-      {/*</SocketProvider>*/}
+      </SocketProvider>
     </AuthProvider>
   );
 }

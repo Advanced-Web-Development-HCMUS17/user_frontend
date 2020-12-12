@@ -36,7 +36,7 @@ export default function UserStatus({props}) {
       <List>
         {
           usersOnline.map(user => (
-            <ListItem key={user.id}>
+            <ListItem key={user._id}>
               <ListItemIcon>
                 <Person/>
               </ListItemIcon>

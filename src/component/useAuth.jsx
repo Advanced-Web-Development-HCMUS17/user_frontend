@@ -37,6 +37,7 @@ export function AuthProvider({children}) {
       setIsAuth(true);
     } else {
       setToken(null);
+      setIsAuth(false);
       setUserInfo(null);
     }
   }
@@ -52,7 +53,6 @@ export function AuthProvider({children}) {
     localStorage.removeItem(LS_TOKEN_KEY);
     setUserInfo(null);
     setIsAuth(false);
-
   }
 
   useEffect(() => {
@@ -67,7 +67,8 @@ export function AuthProvider({children}) {
       setToken: setToken,
       setUserInfo: setUserInfo,
       login: login,
-      logout: logout
+      logout: logout,
+      isAuth: isAuth
     }}>{children}</Provider>)
 }
 

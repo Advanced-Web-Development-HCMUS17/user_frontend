@@ -8,31 +8,36 @@
       </path>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
     <select />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8751b39c-aee8-427a-98bd-860b6f777286" name="Default Changelist" comment="- useSocket, + logout button">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/HomePage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/RegisterPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/lobby/Lobby.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/lobby/PlayerInfo.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/socketHook/EventConstant.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/userStatus/userStatusHandler.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomePage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/LoginPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RegisterPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/useAuth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/useAuth.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/useSocket.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/socketHook/useSocket.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/userStatus/UserStatus.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/userStatus/UserStatus.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/userStatus/useUserStatus.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/userStatus/useUserStatus.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +47,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -68,6 +73,12 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Learning\4_1_Advanced_web_development\DACK\user_frontend\src\component" />
+      <recent name="D:\Learning\4_1_Advanced_web_development\DACK\user_frontend\src\component\socketHook" />
+    </key>
+  </component>
   <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
@@ -80,10 +91,9 @@
       </scripts>
       <node-interpreter value="project" />
       <envs>
-        <env name="PORT" value="3001" />
         <env name="REACT_APP_API_URL" value="http://localhost:3000" />
-        <env name="REACT_APP_LOCALSTORAGE_OBJECT_NAME" value="CARONC1731" />
-        <env name="REACT_APP_SOCKET_URL" value="ws://localhost:3000/" />
+        <env name="REACT_APP_SOCKET_URL" value="ws://localhost:3000" />
+        <env name="PORT" value="3001" />
       </envs>
       <method v="2" />
     </configuration>
@@ -107,6 +117,10 @@
       <workItem from="1607438573860" duration="383000" />
       <workItem from="1607479291941" duration="2890000" />
       <workItem from="1607523340618" duration="3078000" />
+      <workItem from="1607706081203" duration="1581000" />
+      <workItem from="1607707699960" duration="2039000" />
+      <workItem from="1607738776156" duration="81000" />
+      <workItem from="1607758755006" duration="9434000" />
     </task>
     <task id="LOCAL-00001" summary="+ init project">
       <created>1607155722102</created>
@@ -166,38 +180,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="582" y="182" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1607355750326" />
-    <state x="737" y="259" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607527142753">
+    <state x="737" y="259" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607703431457">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="737" y="259" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607527142753" />
-    <state x="664" y="303" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607238145686">
+    <state x="737" y="259" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607703431457" />
+    <state x="664" y="303" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607702388898">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="664" y="303" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607238145686" />
+    <state x="664" y="303" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607702388898" />
     <state x="624" y="206" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607451622942">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="206" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607451622942" />
-    <state x="1132" y="312" width="542" height="602" key="EnvironmentVariablesDialog" timestamp="1607527142212">
+    <state x="1132" y="312" width="542" height="602" key="EnvironmentVariablesDialog" timestamp="1607703430825">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1132" y="312" width="542" height="602" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607527142212" />
-    <state width="1893" height="267" key="GridCell.Tab.0.bottom" timestamp="1607525921362">
+    <state x="1132" y="312" width="542" height="602" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607703430825" />
+    <state width="1893" height="267" key="GridCell.Tab.0.bottom" timestamp="1607788137256">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1893" height="267" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607525921362" />
-    <state width="1893" height="267" key="GridCell.Tab.0.center" timestamp="1607525921362">
+    <state width="1893" height="267" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607788137256" />
+    <state width="1893" height="267" key="GridCell.Tab.0.center" timestamp="1607788137256">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1893" height="267" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607525921362" />
-    <state width="1893" height="267" key="GridCell.Tab.0.left" timestamp="1607525921362">
+    <state width="1893" height="267" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607788137256" />
+    <state width="1893" height="267" key="GridCell.Tab.0.left" timestamp="1607788137256">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1893" height="267" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607525921362" />
-    <state width="1893" height="267" key="GridCell.Tab.0.right" timestamp="1607525921362">
+    <state width="1893" height="267" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607788137256" />
+    <state width="1893" height="267" key="GridCell.Tab.0.right" timestamp="1607788137256">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1893" height="267" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607525921362" />
+    <state width="1893" height="267" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607788137256" />
     <state width="1893" height="331" key="GridCell.Tab.1.bottom" timestamp="1607275026757">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

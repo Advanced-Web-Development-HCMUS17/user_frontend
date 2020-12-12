@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core';
 import {Grid, Typography, FormControl, InputLabel, Input, Box, Button} from '@material-ui/core';
 
-import {useAuth} from "./component/useAuth";
-import AccountServices from "./service/account-service";
+import {useAuth} from "./useAuth";
+import AccountServices from "../service/account-service";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +30,9 @@ export default function Login({props}) {
 
     const response = await AccountServices.login(email, password);
 
-    login(response.token, response.userInfo);
+    if (response) {
+      login(response.token, response.userInfo);
+    }
   }
 
   return (
