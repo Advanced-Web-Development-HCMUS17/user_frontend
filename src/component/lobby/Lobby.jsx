@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useSocket} from "../socketHook/useSocket";
 import {useParams} from "react-router";
 import {LOBBY_EVENT, PLAYER_1} from "../socketHook/EventConstant";
-import {makeStyles} from "@material-ui/core";
+import {Button, makeStyles} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -55,12 +55,22 @@ export default function Lobby() {
     }
   }, [isInitialized]);
 
+  const copyBoardID = () => {
+    navigator.clipboard.writeText(`gameBoard_${lobbyInfo.id}`);
+    alert('Room ID copied to clipboard successfully');
+  }
+
   return (
     <Grid container spacing={3}><p>{JSON.stringify(lobbyInfo)}</p>
       <Grid item md={6}>
-        <Paper variant={"outlined"} square>
-          GAME
-        </Paper>
+        <Grid container spacing={1}>
+          <Grid item md={10}>
+            <Paper variant={"outlined"} square>GAME</Paper>
+          </Grid>
+          <Grid item md={2}>
+            <Button onClick={copyBoardID} variant='contained' color='primary'>Share</Button>
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item md={3}>
         <ChatLayout username={userInfo.username}/>
@@ -86,5 +96,4 @@ export default function Lobby() {
       </Grid>
     </Grid>
   )
-
 }

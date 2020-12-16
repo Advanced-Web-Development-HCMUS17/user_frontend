@@ -9,14 +9,20 @@ import {Box, List, ListItem, Paper} from "@material-ui/core";
 const useStyles = makeStyles(() => ({
   messageRight: {
     display: "flex",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   messageLeft: {
     display: "flex",
     justifyContent: "flex-start"
   },
-  messageContent: {
-    margin: "10px"
+  messageContentLeft: {
+    margin: "10px",
+    backgroundColor: '#ededed'
+  },
+  messageContentRight: {
+    margin: "10px",
+    color:'#ffffff',
+    backgroundColor: '#0098ff'
   }
 }));
 
@@ -38,7 +44,7 @@ const ChatLayout = ({username}) => {
 
   const messageConversation = messageList.map((obj, i = 0) => (
     <ListItem key={i++} className={obj.username === username ? classes.messageRight : classes.messageLeft}>
-      <Paper className={classes.messageContent}>
+      <Paper className={obj.username === username ? classes.messageContentRight : classes.messageContentLeft} elevation={0}>
         <Box m={0.5}>
           {obj.message}
         </Box>
