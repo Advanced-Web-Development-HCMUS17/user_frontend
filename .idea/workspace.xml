@@ -21,9 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8751b39c-aee8-427a-98bd-860b6f777286" name="Default Changelist" comment="+Add UI for share and join Game Room, !HomePage, !Lobby, !Chat component&#10;&#10;Add UI for share and join Game Room.&#10;Styled UI for Chat Component">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/game/Game.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/game/Game.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/game-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/game-service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/HomePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/chat/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/chat/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/lobby/Lobby.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/lobby/Lobby.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="feature/create-join-room" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,6 +52,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../user_backend" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -79,9 +80,9 @@
       </scripts>
       <node-interpreter value="project" />
       <envs>
-        <env name="REACT_APP_API_URL" value="http://localhost:3000" />
         <env name="REACT_APP_SOCKET_URL" value="ws://localhost:3000" />
         <env name="PORT" value="3001" />
+        <env name="REACT_APP_API_URL" value="http://localhost:3000" />
       </envs>
       <method v="2" />
     </configuration>
@@ -138,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607482274758</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="+Chat component, !Lobby, !EventContant&#10;&#10;Add chat function in Game Room&#10;Use useAuth to get curent user in Lobby.jsx&#10;Add some constant for chat socket in EventConstant.jsx">
+      <created>1608113845356</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608113845356</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +157,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/feature/create-join-room" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -161,6 +181,21 @@
     <MESSAGE value="+ init project" />
     <MESSAGE value="+ use socket, + useUserStatus, +set up socket.io" />
     <MESSAGE value="- useSocket, + logout button" />
-    <option name="LAST_COMMIT_MESSAGE" value="- useSocket, + logout button" />
+    <MESSAGE value="+Chat Component, !Lobby, !Event Constrant&#10;&#10;Add chat function int Play Game Room&#10;Use useAuth to get current user in Looby.js&#10;Add some Constraint for Chat socket int EventContant" />
+    <MESSAGE value="+Chat component, !Lobby, !EventContant&#10;&#10;Add chat function in Game Room&#10;Use useAuth to get curent user in Lobby.jsx&#10;Add some constant for chat socket in EventConstant.jsx" />
+    <MESSAGE value="+Add UI for share and join Game Room, !HomePage, !Lobby, !Chat component&#10;&#10;Add UI for share and join Game Room.&#10;Styled UI for Chat Component" />
+    <option name="LAST_COMMIT_MESSAGE" value="+Add UI for share and join Game Room, !HomePage, !Lobby, !Chat component&#10;&#10;Add UI for share and join Game Room.&#10;Styled UI for Chat Component" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/component/HomePage.jsx</url>
+          <line>44</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
