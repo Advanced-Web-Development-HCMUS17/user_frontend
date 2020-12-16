@@ -19,9 +19,8 @@ export function SocketProvider({children}) {
 
   useEffect(() => {
 
-    const sock = io(SOCKET_URL, {auth: {token: token}})
+    const sock = io(SOCKET_URL, {auth: {token: token}});
     setSocket(sock);
-
     if (token) {
       setIsInitialized(1);
     } else {

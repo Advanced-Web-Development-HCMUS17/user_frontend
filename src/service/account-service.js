@@ -1,4 +1,7 @@
 import axios from 'axios';
+require('dotenv').config({
+  path:'../../.env.example',
+})
 
 async function register(username, email, password) {
   console.log(`${process.env.REACT_APP_API_URL}/users/register`);

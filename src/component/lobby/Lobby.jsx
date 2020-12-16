@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import PlayerInfo from "./PlayerInfo";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Box from "@material-ui/core/Box";
+import Game from "../game/Game";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +26,7 @@ export default function Lobby() {
   const classes = useStyles();
 
   const [lobbyInfo, setLobbyInfo] = useState({});
+  const [history,setHistory] = useState([]);
 
   useEffect(() => {
     if (socket) {
@@ -59,6 +61,12 @@ export default function Lobby() {
         <Paper variant={"outlined"} square>
           GAME
         </Paper>
+       <Grid item md={6}>
+       <Game/>
+         </Grid> 
+        
+
+        
       </Grid>
       <Grid item md={3}>
         <Box m={2}>

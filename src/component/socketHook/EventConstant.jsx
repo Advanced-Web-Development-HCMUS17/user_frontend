@@ -5,8 +5,11 @@ export const LOBBY_EVENT = {
   NEW_LOBBY: 'lobby/new',
   DELETE_LOBBY: 'lobby/delete',
   LEAVE_LOBBY: 'lobby/leave',
-  LOBBY_INFO: 'lobby/info'
+  LOBBY_INFO: 'lobby/info',
+  SEND_MOVE: 'lobby/sendToServer',
+  RECEIVE_MOVE: 'lobby/sendToClient'
 }
+
 export const PLAYER_1 = "p1";
 
 export const PLAYER_2 = "p2";
