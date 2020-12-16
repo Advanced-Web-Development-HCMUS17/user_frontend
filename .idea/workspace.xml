@@ -19,25 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8751b39c-aee8-427a-98bd-860b6f777286" name="Default Changelist" comment="- useSocket, + logout button">
-      <change afterPath="$PROJECT_DIR$/src/component/HomePage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/RegisterPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/lobby/Lobby.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/lobby/PlayerInfo.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/socketHook/EventConstant.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/userStatus/userStatusHandler.jsx" afterDir="false" />
+    <list default="true" id="8751b39c-aee8-427a-98bd-860b6f777286" name="Default Changelist" comment="+Add UI for share and join Game Room, !HomePage, !Lobby, !Chat component&#10;&#10;Add UI for share and join Game Room.&#10;Styled UI for Chat Component">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HomePage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/LoginPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RegisterPage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/useAuth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/useAuth.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/useSocket.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/socketHook/useSocket.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/userStatus/UserStatus.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/userStatus/UserStatus.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/userStatus/useUserStatus.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/userStatus/useUserStatus.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/game/Game.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/game/Game.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/game-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/game-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +53,9 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../user_backend" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -174,111 +162,5 @@
     <MESSAGE value="+ use socket, + useUserStatus, +set up socket.io" />
     <MESSAGE value="- useSocket, + logout button" />
     <option name="LAST_COMMIT_MESSAGE" value="- useSocket, + logout button" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="582" y="182" key="#Inspections" timestamp="1607355750326">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="582" y="182" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1607355750326" />
-    <state x="737" y="259" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607703431457">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="737" y="259" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607703431457" />
-    <state x="664" y="303" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607702388898">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="664" y="303" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607702388898" />
-    <state x="624" y="206" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607451622942">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="624" y="206" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607451622942" />
-    <state x="1132" y="312" width="542" height="602" key="EnvironmentVariablesDialog" timestamp="1607703430825">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1132" y="312" width="542" height="602" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607703430825" />
-    <state width="1893" height="267" key="GridCell.Tab.0.bottom" timestamp="1607788137256">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="267" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607788137256" />
-    <state width="1893" height="267" key="GridCell.Tab.0.center" timestamp="1607788137256">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="267" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607788137256" />
-    <state width="1893" height="267" key="GridCell.Tab.0.left" timestamp="1607788137256">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="267" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607788137256" />
-    <state width="1893" height="267" key="GridCell.Tab.0.right" timestamp="1607788137256">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="267" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607788137256" />
-    <state width="1893" height="331" key="GridCell.Tab.1.bottom" timestamp="1607275026757">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="331" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
-    <state width="1893" height="331" key="GridCell.Tab.1.center" timestamp="1607275026756">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="331" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026756" />
-    <state width="1893" height="331" key="GridCell.Tab.1.left" timestamp="1607275026756">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="331" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026756" />
-    <state width="1893" height="331" key="GridCell.Tab.1.right" timestamp="1607275026756">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="331" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026756" />
-    <state width="1893" height="331" key="GridCell.Tab.2.bottom" timestamp="1607275026757">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="331" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
-    <state width="1893" height="331" key="GridCell.Tab.2.center" timestamp="1607275026757">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="331" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
-    <state width="1893" height="331" key="GridCell.Tab.2.left" timestamp="1607275026757">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="331" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
-    <state width="1893" height="331" key="GridCell.Tab.2.right" timestamp="1607275026757">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="331" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
-    <state width="1893" height="331" key="GridCell.Tab.3.bottom" timestamp="1607275026757">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="331" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
-    <state width="1893" height="331" key="GridCell.Tab.3.center" timestamp="1607275026757">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="331" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
-    <state width="1893" height="331" key="GridCell.Tab.3.left" timestamp="1607275026757">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="331" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
-    <state width="1893" height="331" key="GridCell.Tab.3.right" timestamp="1607275026757">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1893" height="331" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
-    <state x="452" y="188" key="Vcs.Push.Dialog.v2" timestamp="1607523352563">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="452" y="188" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607523352563" />
-    <state x="737" y="415" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607523358695">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="737" y="415" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607523358695" />
-    <state x="605" y="188" width="710" height="664" key="find.popup" timestamp="1607447251372">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="605" y="188" width="710" height="664" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607447251372" />
-    <state x="514" y="179" width="875" height="663" key="recent.locations.popup" timestamp="1607441263834">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="514" y="179" width="875" height="663" key="recent.locations.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607441263834" />
-    <state x="532" y="237" key="run.anything.popup" timestamp="1607441275956">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="532" y="237" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607441275956" />
   </component>
 </project>
