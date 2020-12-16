@@ -57,6 +57,7 @@ function calculateWinner1(history, move, isX, row) {
 
 function calculateWinner(squares, size) {
   //Kiểm tra hàng ngang
+  console.log('Mảng là: '+squares);
   for (let i = 0; i < size; i++) {
     const winRow = [];
     for (let j = 0; j < size; j++) {

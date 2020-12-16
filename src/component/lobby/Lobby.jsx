@@ -26,7 +26,6 @@ export default function Lobby() {
   const classes = useStyles();
 
   const [lobbyInfo, setLobbyInfo] = useState({});
-  const [history,setHistory] = useState([]);
 
   useEffect(() => {
     if (socket) {
