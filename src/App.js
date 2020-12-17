@@ -11,7 +11,7 @@ import IndexComponent from "./component";
 function App() {
   return (
     <AuthProvider>
-      <SocketProvider>
+      {/*<SocketProvider>*/}
         <UserStatusProvider>
           <NavigationBar/>
           <Container maxWidth={false}>
@@ -19,7 +19,7 @@ function App() {
           </Container>
           <IndexComponent/>
         </UserStatusProvider>
-      </SocketProvider>
+      {/*</SocketProvider>*/}
     </AuthProvider>
   );
 }

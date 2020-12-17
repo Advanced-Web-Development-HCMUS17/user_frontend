@@ -8,8 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-
-import {useAuth} from './useAuth';
+import {useAuth} from "./useAuth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavigationBar() {
   const classes = useStyles();
-  const {logout} = useAuth();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -37,8 +35,10 @@ export default function NavigationBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const handleLogout = () => {
+  const {logout} = useAuth();
+  const handleLogout = ()=>
+  {
+    setAnchorEl(null);
     logout();
   }
 
@@ -78,7 +78,6 @@ export default function NavigationBar() {
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </div>
