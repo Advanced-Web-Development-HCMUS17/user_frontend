@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
   },
+  title: {
+    backgroundColor: `#3F51B5`,
+    color: `#ffffff`
+  }
 }));
 
 export default function Lobby() {
@@ -62,42 +66,100 @@ export default function Lobby() {
   }
 
   return (
-    <Grid container spacing={3}><p>{JSON.stringify(lobbyInfo)}</p>
-      <Grid item md={6}>
-        <Grid container spacing={1}>
-          <Grid item md={10}>
-            <Paper variant={"outlined"} square>GAME</Paper>
+    <Grid container direction='column' spacing={1}>
+      <Grid item md={12}>
+        <p>{JSON.stringify(lobbyInfo)}</p>
+      </Grid>
+      <Grid item md={12}>
+        <Grid container direction='row' spacing={1}>
+          <Grid item md={5}>
+            <Grid container direction='column' spacing={1}>
+              <Grid item md={12}>
+                <Grid container direction='row' spacing={1}>
+                  <Grid item md={10}>
+                    <Paper className={classes.title} elevation={1} square>
+                      <Box p={0.5}>GAME</Box>
+                    </Paper>
+                  </Grid>
+                  <Grid item md={2}>
+                    <Grid container direction='row' justify='center' alignItems={'center'}>
+                      <Grid item>
+                        <Button onClick={copyBoardID} variant='contained'
+                                style={{backgroundColor: `#009938`, color: `#ffffff`}}>Share</Button>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item md={12}>
+                <Game/>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid item md={2}>
-            <Button onClick={copyBoardID} variant='contained' color='primary'>Share</Button>
+          <Grid item md={4}>
+            <Grid container direction='row' spacing={2}>
+              <Grid item md={12}>
+                <Paper className={classes.title} elevation={1} square>
+                  <Box p={0.5}>CHAT</Box>
+                </Paper>
+              </Grid>
+              <Grid item md={12}>
+                <ChatLayout username={userInfo.username}/>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item md={3}>
+            <Grid container direction='row' spacing={2}>
+              <Grid item md={12}>
+                <Paper className={classes.title} elevation={1} square>
+                  <Box p={0.5}>LOBBY</Box>
+                </Paper>
+              </Grid>
+              <Grid item md={12}>
+                {lobbyInfo ?
+                  <Grid container direction='row' spacing={1}>
+                    <Grid item md={12}>
+                      <Paper variant={"elevation"}>
+                        <Typography variant={"h6"}>Player 1</Typography>
+                        {lobbyInfo.player1 ?
+                          <PlayerInfo name={lobbyInfo.player1.username}
+                                      email={lobbyInfo.player1.email}
+                                      rating={lobbyInfo.player1.rating}/>
+                          :
+                          <div className={classes.root}>
+                            <LinearProgress color="secondary"/>
+                            <Typography variant={"inherit"}>Waiting for other player...</Typography>
+                          </div>}
+                      </Paper>
+                    </Grid>
+                    <Grid item md={12}>
+                      <Paper>
+                        <Typography variant={"h6"}>Player 2</Typography>
+                        {lobbyInfo.player2 ?
+                          <PlayerInfo name={lobbyInfo.player2.username}
+                                      email={lobbyInfo.player2.email}
+                                      rating={lobbyInfo.player2.rating}/>
+                          :
+                          <div className={classes.root}>
+                            <LinearProgress color="secondary"/>
+                            <Typography variant={"inherit"}>Waiting for other player...</Typography>
+                          </div>
+                        }
+                      </Paper>
+                    </Grid>
+                  </Grid>
+                  :
+                  <Grid container spacing={1}>
+                    <Grid item md={12}>
+                      <Box p={0.5}>Invalid lobby</Box>
+                    </Grid>
+                  </Grid>
+                }
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
-      <Grid item md={6}>
-        <Game/>
-      </Grid>
-      <Grid item md={3}>
-        <ChatLayout username={userInfo.username}/>
-      <Grid item md={3}>
-        <Box m={2}>
-          {lobbyInfo ? <Paper variant={"elevation"} square>
-              Lobby
-              <Typography variant={"h6"}>Player 1</Typography>
-              {lobbyInfo.player1 ? <PlayerInfo name={lobbyInfo.player1.username} email={lobbyInfo.player1.email}
-                                               rating={lobbyInfo.player1.rating}/> :
-                <div className={classes.root}><LinearProgress color="secondary"/>
-                  <Typography variant={"inherit"}>Waiting...</Typography></div>}
-              <Typography variant={"h6"}>Player 2</Typography>
-              {lobbyInfo.player2 ? <PlayerInfo name={lobbyInfo.player2.username} email={lobbyInfo.player2.email}
-                                               rating={lobbyInfo.player2.rating}/> :
-                <div className={classes.root}><LinearProgress color="secondary"/>
-                  <Typography variant={"inherit"}>Waiting...</Typography></div>}
-            </Paper>
-            : <LinearProgress color="secondary"/>
-          }
-        </Box>
-      </Grid>
     </Grid>
   )
-
 }
