@@ -1,4 +1,7 @@
 import axios from 'axios';
+require('dotenv').config({
+  path:'../../.env.example',
+})
 
 const API_URL = process.env.REACT_APP_API_URL;
 

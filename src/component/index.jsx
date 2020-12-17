@@ -1,23 +1,23 @@
 import React from "react";
 import {Redirect, Route, Switch, useHistory} from "react-router-dom";
-import Register from "../RegisterPage";
-import Login from "../LoginPage";
-import Home from "../HomePage";
+import Register from "./RegisterPage";
+import Login from "./LoginPage";
+import Home from "./HomePage";
 import {useAuth} from "./useAuth";
+import Lobby from "./lobby/Lobby";
+import UserStatus from "./userStatus/UserStatus";
 
 export default function IndexComponent({props}) {
   const history = useHistory();
 
   const {userInfo} = useAuth();
   return (
-    <Switch>
+    <><Switch>
       <Route exact path="/register">
         {
           userInfo ?
             <Redirect to="/"/> :
-            <Register onSuccess={() => {
-              history.replace("/login");
-            }}/>
+            <Register/>
         }
       </Route>
 
@@ -28,7 +28,6 @@ export default function IndexComponent({props}) {
             <Login/>
         }
       </Route>
-
       <Route exact path="/">
         {
           userInfo ?
@@ -37,6 +36,9 @@ export default function IndexComponent({props}) {
             <Redirect to="/register"/>
         }
       </Route>
-    </Switch>
+      <Route path={"/l/:lobbyId"}>
+        <Lobby/>
+      </Route>
+    </Switch></>
   )
 }
