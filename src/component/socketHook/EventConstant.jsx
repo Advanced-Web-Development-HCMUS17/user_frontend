@@ -6,7 +6,8 @@ export const LOBBY_EVENT = {
   DELETE_LOBBY: 'lobby/delete',
   LEAVE_LOBBY: 'lobby/leave',
   LOBBY_INFO: 'lobby/info',
-  SEND_MOVE: 'lobby/send'
+  SEND_MOVE: 'lobby/sendToServer',
+  RECEIVE_MOVE: 'lobby/sendToClient'
 }
 
 export const PLAYER_1 = "p1";

@@ -44,7 +44,7 @@ function Game() {
         if (socket) {
             socket.emit(LOBBY_EVENT.SEND_MOVE, { move: history[history.length - 1] });
 
-            socket.on(LOBBY_EVENT.SEND_MOVE, ({move}) => {
+            socket.on(LOBBY_EVENT.RECEIVE_MOVE, ({move}) => {
                 console.log('Nuoc di la: ', move);
                 let newHistory = history;
                 newHistory.push(move);
