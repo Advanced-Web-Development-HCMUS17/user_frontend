@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useSocket } from "../socketHook/useSocket";
 import Board from './Board';
 import gameServices from '../../service/game-service.js';
+import accountServices from '../../service/account-service.js';
 import './index.css';
 import { LOBBY_EVENT } from '../socketHook/EventConstant';
+import { useParams } from 'react-router';
 
-function Game() {
+function Game(props) {
+    const userInfo = props.userInfo;
+    const { lobbyId } = useParams();
     const { socket, isInitialized } = useSocket();
     const [history, setHistory] = useState([]);
     const row = 10;
@@ -14,41 +18,45 @@ function Game() {
     let status = 'Next player: X';
 
     function handleClick(i) {
-        let newHistory = history;
-        for (let k = 0; k < newHistory.length; k++) {
-            if (newHistory[k] === i)
-                return;
+        const isMyTurn = await gameServices.isMyTurn(lobbyId, userInfo.username);
+        if (isMyTurn === true) {
+            let newHistory = history.slice(0, history.length);
+            for (let k = 0; k < newHistory.length; k++) {
+                if (newHistory[k] === i)
+                    return;
+            }
+            
+            socket.emit(LOBBY_EVENT.SEND_MOVE, { move: i, roomId: lobbyId });
         }
-        newHistory.push(i);
-        const refactorHistory = gameServices.refactorArray(newHistory, row);
-        // winChain = gameServices.calculateWinner(refactorHistory, i, xIsNext, row);
-        const result = gameServices.calculateWinner(refactorHistory, row);
-        if (result) {
-            console.log(result);
-            status = `Winner: ${result.winner}`;
 
 
-            // else if (GameFunc.isDraw(current) === true) {
-            //     status = "DRAW";
-            // }
 
-            return;
-        } else {
-            status = "Next player: " + (xIsNext ? 'X' : 'O');
-        }
-        setHistory(newHistory);
-        setXIsNext(!xIsNext);
+        // const refactorHistory = gameServices.refactorArray(newHistory, row);
+        // const result = gameServices.calculateWinner(refactorHistory, row);
+        // if (result) {
+        //     console.log(result);
+        //     status = `Winner: ${result.winner}`;
+
+
+        //     // else if (GameFunc.isDraw(current) === true) {
+        //     //     status = "DRAW";
+        //     // }
+
+        //     return;
+        // } else {
+        //     status = "Next player: " + (xIsNext ? 'X' : 'O');
+        // }
+
     }
 
     useEffect(() => {
         if (socket) {
-            socket.emit(LOBBY_EVENT.SEND_MOVE, { move: history[history.length - 1] });
 
-            socket.on(LOBBY_EVENT.RECEIVE_MOVE, ({move}) => {
-                console.log('Nuoc di la: ', move);
-                let newHistory = history;
-                newHistory.push(move);
-                setHistory(newHistory);
+            socket.on(LOBBY_EVENT.RECEIVE_MOVE, ({ move }) => {
+
+                setHistory(history => [...history, move]);
+                console.log('New history: ', history);
+                setXIsNext(!xIsNext);
             })
         }
     }, [isInitialized])
@@ -57,8 +65,8 @@ function Game() {
         <div className="game">
             <div className="game-board">
                 <Board
-                    squares={gameServices.refactorArray(history, row)}
-                    isWin={winChain}
+                    squares={history}
+                    //isWin={winChain}
                     onClick={(i) => handleClick(i)}
                     row={row}
                 />
