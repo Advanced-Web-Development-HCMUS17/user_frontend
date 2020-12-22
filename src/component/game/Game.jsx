@@ -2,31 +2,41 @@ import React, { useState, useEffect } from 'react';
 import { useSocket } from "../socketHook/useSocket";
 import Board from './Board';
 import gameServices from '../../service/game-service.js';
-import accountServices from '../../service/account-service.js';
 import './index.css';
 import { LOBBY_EVENT } from '../socketHook/EventConstant';
 import { useParams } from 'react-router';
+
+const row = 15;
 
 function Game(props) {
     const userInfo = props.userInfo;
     const { lobbyId } = useParams();
     const { socket, isInitialized } = useSocket();
     const [history, setHistory] = useState([]);
-    const row = 10;
-    const [xIsNext, setXIsNext] = useState(true);
-    let winChain;
+
+    let winner, newHistory, winChainProps = null;
     let status = 'Next player: X';
 
-    function handleClick(i) {
+    async function handleClick(i) {
         const isMyTurn = await gameServices.isMyTurn(lobbyId, userInfo.username);
         if (isMyTurn === true) {
-            let newHistory = history.slice(0, history.length);
-            for (let k = 0; k < newHistory.length; k++) {
-                if (newHistory[k] === i)
+            let cloneHistory = history.slice(0, history.length);
+            for (let k = 0; k < cloneHistory.length; k++) {
+                if (cloneHistory[k] === i)
                     return;
             }
-            
-            socket.emit(LOBBY_EVENT.SEND_MOVE, { move: i, roomId: lobbyId });
+            const result = await gameServices.saveGame(lobbyId, userInfo.username, i, row);
+
+            if (result) {
+                winner = result.winner;
+                winChainProps = result.winChain;
+                newHistory = result.newHistory;
+            }
+
+            socket.emit(LOBBY_EVENT.SEND_MOVE, {
+                newHistory: newHistory, move: i,
+                roomId: lobbyId, winChain: winChainProps
+            });
         }
 
 
@@ -52,11 +62,11 @@ function Game(props) {
     useEffect(() => {
         if (socket) {
 
-            socket.on(LOBBY_EVENT.RECEIVE_MOVE, ({ move }) => {
-
-                setHistory(history => [...history, move]);
+            socket.on(LOBBY_EVENT.RECEIVE_MOVE, ({ newHistory, winChain }) => {
+                winChainProps = winChain;
+                setHistory(newHistory);
                 console.log('New history: ', history);
-                setXIsNext(!xIsNext);
+
             })
         }
     }, [isInitialized])
@@ -66,7 +76,7 @@ function Game(props) {
             <div className="game-board">
                 <Board
                     squares={history}
-                    //isWin={winChain}
+                    isWin={winChainProps}
                     onClick={(i) => handleClick(i)}
                     row={row}
                 />

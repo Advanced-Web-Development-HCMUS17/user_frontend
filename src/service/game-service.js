@@ -28,15 +28,19 @@ async function createGame(roomId, user1, user2) {
   }
 }
 
-async function saveGame(roomId, username, move) {
+async function saveGame(roomId, username, move, row) {
   try {
     const res = await axios.post(`${API_URL}/game/save`, {
       roomId: roomId,
       username: username,
-      move: move
+      move: move,
+      row: row
     });
     if (res.status === 201) {
-      return res.data;
+      const winner = res.data.winner;
+      const winChain = res.data.winChain;
+      const newHistory = res.data.newHistory;
+      return { newHistory, winner, winChain };
     } else {
       return null;
     }
@@ -47,7 +51,10 @@ async function saveGame(roomId, username, move) {
 
 async function isMyTurn(roomId, username) {
   try {
-    const res = await axios.post(`${API_URL}/game/isMyTurn`);
+    const res = await axios.post(`${API_URL}/game/isMyTurn`, {
+      roomId: roomId,
+      username: username
+    });
     return res.data;
   }
   catch (err) {
@@ -55,6 +62,6 @@ async function isMyTurn(roomId, username) {
   }
 }
 
-const gameServices = { refactorArray, saveGame, createGame };
+const gameServices = { refactorArray, saveGame, createGame, isMyTurn };
 
 export default gameServices;

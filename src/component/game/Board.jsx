@@ -26,18 +26,17 @@ function Board(props) {
     let items = [];
     for (let i = 0; i < ROW; i++) {
         for (let j = 0; j < ROW; j++) {
-            // if (isWin) {
-            //     if (find(isWin,ROW*i+j)===true) {
-            //         items.push(renderSquare(ROW * i + j, true));
-            //     }
-            //     else {
-            //         items.push(renderSquare(ROW * i + j, false));
-            //     }
-            // }
-            // else {
-            //     items.push(renderSquare(ROW * i + j, false));
-            // }
-            items.push(renderSquare(ROW * i + j, false));
+            if (isWin) {
+                if (find(isWin,ROW*i+j)===true) {
+                    items.push(renderSquare(ROW * i + j, true));
+                }
+                else {
+                    items.push(renderSquare(ROW * i + j, false));
+                }
+            }
+            else {
+                items.push(renderSquare(ROW * i + j, false));
+            }
         }
         board.push(<div className="board-row">{items}</div>);
         items = [];

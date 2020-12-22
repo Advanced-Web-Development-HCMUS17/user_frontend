@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {useSocket} from "../socketHook/useSocket";
-import {useParams} from "react-router";
-import {LOBBY_EVENT, PLAYER_1} from "../socketHook/EventConstant";
-import {Button, makeStyles} from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { useSocket } from "../socketHook/useSocket";
+import { useParams } from "react-router";
+import { LOBBY_EVENT, PLAYER_1 } from "../socketHook/EventConstant";
+import { Button, makeStyles } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -11,7 +11,8 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Box from "@material-ui/core/Box";
 import Game from "../game/Game";
 import ChatLayout from "../chat";
-import {useAuth} from '../useAuth';
+import { useAuth } from '../useAuth';
+import gameServices from "../../service/game-service";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,38 +28,54 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Lobby() {
-  const {socket, isInitialized} = useSocket();
-  const {lobbyId} = useParams();
+  const { socket, isInitialized } = useSocket();
+  const { lobbyId } = useParams();
   const classes = useStyles();
-  const {userInfo} = useAuth();
+  const { userInfo } = useAuth();
   const [lobbyInfo, setLobbyInfo] = useState({});
 
 
   useEffect(() => {
+
+    const createGame = async () => {
+      if (lobbyInfo.player1 && lobbyInfo.player2)
+      {
+        
+        console.log("Infomation: ",lobbyInfo.player1.username,lobbyInfo.player2.username);
+        const res = await gameServices.createGame(lobbyId,lobbyInfo.player1.username,lobbyInfo.player2.username);
+        console.log(res.data.message);
+      }
+    }
+
     if (socket) {
-      socket.emit(LOBBY_EVENT.JOIN_LOBBY, {roomId: lobbyId});
+      socket.emit(LOBBY_EVENT.JOIN_LOBBY, { roomId: lobbyId });
       socket.on(LOBBY_EVENT.LOBBY_INFO, (lobbyInfo) => {
         setLobbyInfo(lobbyInfo);
       });
 
-      socket.on(LOBBY_EVENT.JOIN_LOBBY, ({user, player}) => {
+      socket.on(LOBBY_EVENT.JOIN_LOBBY, ({ user, player }) => {
         if (player === PLAYER_1) {
-          setLobbyInfo({...lobbyInfo, player1: user});
+          setLobbyInfo({ ...lobbyInfo, player1: user });
         } else {
-          setLobbyInfo({...lobbyInfo, player2: user});
+          setLobbyInfo({ ...lobbyInfo, player2: user });
         }
+        
+        
+        createGame();
       });
 
-      socket.on(LOBBY_EVENT.LEAVE_LOBBY, ({leftPlayer}) => {
+      socket.on(LOBBY_EVENT.LEAVE_LOBBY, ({ leftPlayer }) => {
         if (leftPlayer === PLAYER_1) {
-          setLobbyInfo({...lobbyInfo, player1: null});
+          setLobbyInfo({ ...lobbyInfo, player1: null });
         } else {
-          setLobbyInfo({...lobbyInfo, player2: null});
+          setLobbyInfo({ ...lobbyInfo, player2: null });
         }
       })
 
     }
+    createGame();
   }, [isInitialized]);
+
 
   const copyBoardID = () => {
     navigator.clipboard.writeText(`gameBoard_${lobbyInfo.id}`);
@@ -85,14 +102,14 @@ export default function Lobby() {
                     <Grid container direction='row' justify='center' alignItems={'center'}>
                       <Grid item>
                         <Button onClick={copyBoardID} variant='contained'
-                                style={{backgroundColor: `#009938`, color: `#ffffff`}}>Share</Button>
+                          style={{ backgroundColor: `#009938`, color: `#ffffff` }}>Share</Button>
                       </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
               </Grid>
               <Grid item md={12}>
-                <Game/>
+                <Game userInfo={userInfo} />
               </Grid>
             </Grid>
           </Grid>
@@ -104,7 +121,7 @@ export default function Lobby() {
                 </Paper>
               </Grid>
               <Grid item md={12}>
-                <ChatLayout username={userInfo.username}/>
+                <ChatLayout username={userInfo.username} />
               </Grid>
             </Grid>
           </Grid>
@@ -123,11 +140,11 @@ export default function Lobby() {
                         <Typography variant={"h6"}>Player 1</Typography>
                         {lobbyInfo.player1 ?
                           <PlayerInfo name={lobbyInfo.player1.username}
-                                      email={lobbyInfo.player1.email}
-                                      rating={lobbyInfo.player1.rating}/>
+                            email={lobbyInfo.player1.email}
+                            rating={lobbyInfo.player1.rating} />
                           :
                           <div className={classes.root}>
-                            <LinearProgress color="secondary"/>
+                            <LinearProgress color="secondary" />
                             <Typography variant={"inherit"}>Waiting for other player...</Typography>
                           </div>}
                       </Paper>
@@ -137,11 +154,11 @@ export default function Lobby() {
                         <Typography variant={"h6"}>Player 2</Typography>
                         {lobbyInfo.player2 ?
                           <PlayerInfo name={lobbyInfo.player2.username}
-                                      email={lobbyInfo.player2.email}
-                                      rating={lobbyInfo.player2.rating}/>
+                            email={lobbyInfo.player2.email}
+                            rating={lobbyInfo.player2.rating} />
                           :
                           <div className={classes.root}>
-                            <LinearProgress color="secondary"/>
+                            <LinearProgress color="secondary" />
                             <Typography variant={"inherit"}>Waiting for other player...</Typography>
                           </div>
                         }
