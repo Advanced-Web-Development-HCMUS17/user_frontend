@@ -104,7 +104,7 @@ export default function Lobby() {
                 </Paper>
               </Grid>
               <Grid item md={12}>
-                <ChatLayout username={userInfo.username}/>
+                <ChatLayout user={userInfo}/>
               </Grid>
             </Grid>
           </Grid>
