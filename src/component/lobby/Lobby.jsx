@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSocket } from "../socketHook/useSocket";
 import { useParams } from "react-router";
-import { LOBBY_EVENT, PLAYER_1 } from "../socketHook/EventConstant";
+import { LOBBY_EVENT, PLAYER_1, GAME_EVENT } from "../socketHook/EventConstant";
 import { Button, makeStyles } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -12,7 +12,6 @@ import Box from "@material-ui/core/Box";
 import Game from "../game/Game";
 import ChatLayout from "../chat";
 import { useAuth } from '../useAuth';
-import gameServices from "../../service/game-service";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,15 +36,7 @@ export default function Lobby() {
 
   useEffect(() => {
 
-    const createGame = async () => {
-      if (lobbyInfo.player1 && lobbyInfo.player2)
-      {
-        
-        console.log("Infomation: ",lobbyInfo.player1.username,lobbyInfo.player2.username);
-        const res = await gameServices.createGame(lobbyId,lobbyInfo.player1.username,lobbyInfo.player2.username);
-        console.log(res.data.message);
-      }
-    }
+
 
     if (socket) {
       socket.emit(LOBBY_EVENT.JOIN_LOBBY, { roomId: lobbyId });
@@ -59,9 +50,9 @@ export default function Lobby() {
         } else {
           setLobbyInfo({ ...lobbyInfo, player2: user });
         }
-        
-        
-        createGame();
+
+
+
       });
 
       socket.on(LOBBY_EVENT.LEAVE_LOBBY, ({ leftPlayer }) => {
@@ -70,10 +61,10 @@ export default function Lobby() {
         } else {
           setLobbyInfo({ ...lobbyInfo, player2: null });
         }
-      })
+      });
+
 
     }
-    createGame();
   }, [isInitialized]);
 
 
@@ -82,6 +73,13 @@ export default function Lobby() {
     alert('Room ID copied to clipboard successfully');
   }
 
+  const handleClick = () => {
+    if (socket)
+    {
+      console.log("Test");
+      socket.emit(GAME_EVENT.GAME_READY,({}));
+    }
+  }
   return (
     <Grid container direction='column' spacing={1}>
       <Grid item md={12}>
@@ -103,6 +101,9 @@ export default function Lobby() {
                       <Grid item>
                         <Button onClick={copyBoardID} variant='contained'
                           style={{ backgroundColor: `#009938`, color: `#ffffff` }}>Share</Button>
+                        <Button variant="contained" color="primary" onClick={() => handleClick()} >
+                          Ready
+                        </Button>
                       </Grid>
                     </Grid>
                   </Grid>
