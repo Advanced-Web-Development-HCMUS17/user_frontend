@@ -63,7 +63,11 @@ export default function Lobby() {
         }
       });
 
-
+      // socket.on(GAME_EVENT.GAME_START, ({ userFirst, userSecond, boardSize }) => 
+      // {
+      //     console.log("GAME START!!");
+      //     console.log(userFirst,userSecond,boardSize);
+      // })
     }
   }, [isInitialized]);
 
@@ -72,14 +76,13 @@ export default function Lobby() {
     navigator.clipboard.writeText(`gameBoard_${lobbyInfo.id}`);
     alert('Room ID copied to clipboard successfully');
   }
+  function handleReady() {
+    if (socket) {
 
-  const handleClick = () => {
-    if (socket)
-    {
-      console.log("Test");
-      socket.emit(GAME_EVENT.GAME_READY,({}));
+      socket.emit(GAME_EVENT.GAME_READY, ({}));
     }
   }
+
   return (
     <Grid container direction='column' spacing={1}>
       <Grid item md={12}>
@@ -101,7 +104,7 @@ export default function Lobby() {
                       <Grid item>
                         <Button onClick={copyBoardID} variant='contained'
                           style={{ backgroundColor: `#009938`, color: `#ffffff` }}>Share</Button>
-                        <Button variant="contained" color="primary" onClick={() => handleClick()} >
+                        <Button variant="contained" color="primary" onClick={() => handleReady()} >
                           Ready
                         </Button>
                       </Grid>
@@ -110,7 +113,7 @@ export default function Lobby() {
                 </Grid>
               </Grid>
               <Grid item md={12}>
-                <Game userInfo={userInfo} />
+                <Game />
               </Grid>
             </Grid>
           </Grid>
