@@ -19,57 +19,65 @@ const useStyles = makeStyles((theme) => ({
 function Game() {
     const classes = useStyles();
     const { socket, isInitialized } = useSocket();
-    const {history, setHistory} = useState([]);
-    const { winChain, setWinChain } = useState(null);
-    const { component, setComponent } = useState(<></>);
-
+    //const [history, setHistory] = useState([]);
+    //const [winChain, setWinChain] = useState(null);
+    const [component, setComponent] = useState();
     // let winner, winChainProps = null;
-    let status = null;
 
-    async function handleClick(i) {
+
+    function setContent(history, winChain, boardSize, status) {
+        setComponent(
+
+            <div className="game">
+
+                <div className="game-board">
+                    <Board
+                        squares={history}
+                        isWin={winChain}
+                        onClick={(i) => handleClick(i)}
+                        row={boardSize}
+                    />
+                </div>
+                <div className="game-info">
+                    <div>{status}</div>
+                </div>
+            </div>
+        )
+    }
+
+    function handleClick(i) {
 
 
         socket.emit(GAME_EVENT.SEND_MOVE, {
             move: i
         });
     }
-    
+
     useEffect(() => {
         if (socket) {
 
             socket.on(GAME_EVENT.GAME_START, ({ userFirst, userSecond, boardSize }) => {
-                status = "Next player: " + userFirst;
-                setComponent(
-                    <div className="game">
+                const status = "Next player: " + userFirst;
 
-                        <div className="game-board">
-                            <Board
-                                squares={history}
-                                isWin={winChain}
-                                onClick={(i) => handleClick(i)}
-                                row={boardSize}
-                            />
-                        </div>
-                        <div className="game-info">
-                            <div>{status}</div>
-                        </div>
-                    </div>
-                );
+                setContent([], null, boardSize, status);
                 console.log("Game start!!!");
             });
 
 
 
-            socket.on(GAME_EVENT.SEND_MOVE, ({ newHistory, userTurn }) => {
-                status = "Next player: " + userTurn;
-                setHistory(newHistory);
-                console.log('New history: ', history);
+            socket.on(GAME_EVENT.SEND_MOVE, ({ newHistory, userTurn, boardSize }) => {
+                const status = "Next player: " + userTurn;
+                setContent(newHistory, null, boardSize, status);
+                console.log('New history: ', newHistory);
+
 
             });
 
-            socket.on(GAME_EVENT.GAME_END, ({ userWin, winChain }) => {
-                status = "Winner " + userWin;
-                setWinChain(winChain);
+            socket.on(GAME_EVENT.GAME_END, ({ newHistory, userWin, winChain, boardSize }) => {
+                const status = "Winner: " + userWin;
+                setContent(newHistory, winChain, boardSize, status);
+                console.log("Winner: ", userWin);
+
 
             });
         }

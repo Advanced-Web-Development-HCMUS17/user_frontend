@@ -10,7 +10,7 @@ export const LOBBY_EVENT = {
 
 export const GAME_EVENT = {
   GAME_READY: 'game/ready',
-  GAME_START: ' game/start',
+  GAME_START: 'game/start',
   SEND_MOVE: 'game/send',
   GAME_END: 'game/end'
 }
