@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useSocket} from "../socketHook/useSocket";
 import {useParams} from "react-router";
-import {LOBBY_EVENT, PLAYER_1} from "../socketHook/EventConstant";
+import {LOBBY_EVENT, PLAYER_1, GAME_EVENT} from "../socketHook/EventConstant";
 import {Button, makeStyles} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -11,7 +11,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Box from "@material-ui/core/Box";
 import Game from "../game/Game";
 import ChatLayout from "../chat";
-import {useAuth} from '../useAuth';
+import { useAuth } from '../useAuth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Lobby() {
-  const {socket, isInitialized} = useSocket();
-  const {lobbyId} = useParams();
+  const { socket, isInitialized } = useSocket();
+  const { lobbyId } = useParams();
   const classes = useStyles();
-  const {userInfo} = useAuth();
+  const { userInfo } = useAuth();
   const [lobbyInfo, setLobbyInfo] = useState({});
 
 
@@ -55,7 +55,7 @@ export default function Lobby() {
         } else {
           setLobbyInfo({...lobbyInfo, player2: null});
         }
-      })
+      });
 
     }
   }, [isInitialized]);
@@ -63,6 +63,12 @@ export default function Lobby() {
   const copyBoardID = () => {
     navigator.clipboard.writeText(`gameBoard_${lobbyInfo.id}`);
     alert('Room ID copied to clipboard successfully');
+  }
+  function handleReady() {
+    if (socket) {
+
+      socket.emit(GAME_EVENT.GAME_READY, ({}));
+    }
   }
 
   return (
@@ -85,7 +91,10 @@ export default function Lobby() {
                     <Grid container direction='row' justify='center' alignItems={'center'}>
                       <Grid item>
                         <Button onClick={copyBoardID} variant='contained'
-                                style={{backgroundColor: `#009938`, color: `#ffffff`}}>Share</Button>
+                          style={{ backgroundColor: `#009938`, color: `#ffffff` }}>Share</Button>
+                        <Button variant="contained" color="primary" onClick={() => handleReady()} >
+                          Ready
+                        </Button>
                       </Grid>
                     </Grid>
                   </Grid>

@@ -2,71 +2,92 @@ import React, { useState, useEffect } from 'react';
 import { useSocket } from "../socketHook/useSocket";
 import Board from './Board';
 import gameServices from '../../service/game-service.js';
+import { Button, Grid, makeStyles } from '@material-ui/core';
 import './index.css';
-import { LOBBY_EVENT } from '../socketHook/EventConstant';
+import { LOBBY_EVENT, GAME_EVENT } from '../socketHook/EventConstant';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
+    }
+}));
+
 
 function Game() {
+    const classes = useStyles();
     const { socket, isInitialized } = useSocket();
-    const [history, setHistory] = useState([]);
-    const row = 10;
-    const [xIsNext, setXIsNext] = useState(true);
-    let winChain;
-    let status = 'Next player: X';
+    //const [history, setHistory] = useState([]);
+    //const [winChain, setWinChain] = useState(null);
+    const [component, setComponent] = useState();
+    // let winner, winChainProps = null;
+
+
+    function setContent(history, winChain, boardSize, status) {
+        setComponent(
+
+            <div className="game">
+
+                <div className="game-board">
+                    <Board
+                        squares={history}
+                        isWin={winChain}
+                        onClick={(i) => handleClick(i)}
+                        row={boardSize}
+                    />
+                </div>
+                <div className="game-info">
+                    <div>{status}</div>
+                </div>
+            </div>
+        )
+    }
 
     function handleClick(i) {
-        let newHistory = history;
-        for (let k = 0; k < newHistory.length; k++) {
-            if (newHistory[k] === i)
-                return;
-        }
-        newHistory.push(i);
-        const refactorHistory = gameServices.refactorArray(newHistory, row);
-        // winChain = gameServices.calculateWinner(refactorHistory, i, xIsNext, row);
-        const result = gameServices.calculateWinner(refactorHistory, row);
-        if (result) {
-            console.log(result);
-            status = `Winner: ${result.winner}`;
 
 
-            // else if (GameFunc.isDraw(current) === true) {
-            //     status = "DRAW";
-            // }
-
-            return;
-        } else {
-            status = "Next player: " + (xIsNext ? 'X' : 'O');
-        }
-        setHistory(newHistory);
-        setXIsNext(!xIsNext);
+        socket.emit(GAME_EVENT.SEND_MOVE, {
+            move: i
+        });
     }
 
     useEffect(() => {
         if (socket) {
-            socket.emit(LOBBY_EVENT.SEND_MOVE, { move: history[history.length - 1] });
 
-            socket.on(LOBBY_EVENT.RECEIVE_MOVE, ({move}) => {
-                console.log('Nuoc di la: ', move);
-                let newHistory = history;
-                newHistory.push(move);
-                setHistory(newHistory);
-            })
+            socket.on(GAME_EVENT.GAME_START, ({ userFirst, userSecond, boardSize }) => {
+                const status = "Next player: " + userFirst;
+
+                setContent([], null, boardSize, status);
+                console.log("Game start!!!");
+            });
+
+
+
+            socket.on(GAME_EVENT.SEND_MOVE, ({ newHistory, userTurn, boardSize }) => {
+                const status = "Next player: " + userTurn;
+                setContent(newHistory, null, boardSize, status);
+                console.log('New history: ', newHistory);
+
+
+            });
+
+            socket.on(GAME_EVENT.GAME_END, ({ newHistory, userWin, winChain, boardSize }) => {
+                const status = "Winner: " + userWin;
+                setContent(newHistory, winChain, boardSize, status);
+                console.log("Winner: ", userWin);
+
+
+            });
         }
     }, [isInitialized])
 
     return (
-        <div className="game">
-            <div className="game-board">
-                <Board
-                    squares={gameServices.refactorArray(history, row)}
-                    isWin={winChain}
-                    onClick={(i) => handleClick(i)}
-                    row={row}
-                />
-            </div>
-            <div className="game-info">
-                <div>{status}</div>
-            </div>
-        </div>
+
+        <Grid item md={12}>
+            {component}
+        </Grid>
     );
 
 }

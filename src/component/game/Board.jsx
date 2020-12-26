@@ -1,6 +1,6 @@
 import React from 'react';
 import Square from './Square';
-
+import gameServices from '../../service/game-service.js';
 function find(array,value)
 {
     for (let i =0;i<array.length;i++)
@@ -15,7 +15,8 @@ function find(array,value)
 
 function Board(props) {
     function renderSquare(i, highlight) {
-        return <Square value={props.squares[i]} highlight={highlight}
+        const squares = gameServices.refactorArray(props.squares, props.row)
+        return <Square value={squares[i]} highlight={highlight}
             onClick={() => props.onClick(i)}></Square>;
     };
     const ROW = props.row;
