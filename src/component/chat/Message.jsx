@@ -3,14 +3,14 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import {Box, ListItem, Paper, Typography} from "@material-ui/core";
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   messageRight: {
-    "padding-block": "3px",
+    "padding-block": "0",
     display: "flex",
     justifyContent: "flex-end",
   },
   messageLeft: {
-    "padding-block": "3px",
+    "padding-block": "0",
     display: "flex",
     justifyContent: "flex-start"
   },
@@ -19,7 +19,15 @@ const useStyles = makeStyles(() => ({
   },
   messageContentRight: {
     color: '#ffffff',
-    backgroundColor: '#0098ff'
+    backgroundColor: '#0098ff',
+  },
+  timeRight: {
+    "text-align": "right",
+    "font-size": "x-small"
+  },
+  timeLeft:{
+    "text-align": "left",
+    "font-size": "x-small"
   }
 }));
 
@@ -30,33 +38,56 @@ export default function Message({messageObj, currentUserID, elementKey}) {
   if (messageObj.user._id === currentUserID) {
     return (
       <ListItem key={elementKey} className={classes.messageRight}>
-        <Paper className={classes.messageContentRight} elevation={0}>
-          <Box m={0.5}>
+        <Box>
+          <Box>
+            <Paper className={classes.messageContentRight} elevation={0}>
+              <Box p={0.5}>
+                <Typography component="div">
+                  <Box textAlign="center">
+                    {messageObj.message}
+                  </Box>
+                </Typography>
+              </Box>
+            </Paper>
+          </Box>
+          <Box>
             <Typography component="div">
-              <Box >
-                {messageObj.message} • {time_formatted}
+              <Box className={classes.timeRight}>
+                {time_formatted}
               </Box>
             </Typography>
           </Box>
-        </Paper>
+        </Box>
       </ListItem>
     );
   } else {
     return (
       <ListItem key={elementKey} className={classes.messageLeft}>
-        <Paper className={classes.messageContentLeft} elevation={0}>
-          <Box m={0.5}>
-            <Typography component="div">
-              <Box fontWeight="fontWeightLight"
-                   fontSize={13}>
-                {messageObj.user.username}
+        <Box>
+          <Box>
+            <Paper className={classes.messageContentLeft} elevation={0}>
+              <Box m={0.5}>
+                <Typography component="div">
+                  <Box fontWeight="fontWeightBold"
+                       fontSize={13}
+                  >
+                    {messageObj.user.username}
+                  </Box>
+                  <Box>
+                    {messageObj.message}
+                  </Box>
+                </Typography>
               </Box>
-              <Box>
-                {messageObj.message} • {time_formatted}
+            </Paper>
+          </Box>
+          <Box>
+            <Typography component="div">
+              <Box className={classes.timeLeft}>
+                {time_formatted}
               </Box>
             </Typography>
           </Box>
-        </Paper>
+        </Box>
       </ListItem>
     );
   }
