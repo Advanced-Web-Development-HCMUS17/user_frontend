@@ -6,7 +6,8 @@ export const LOBBY_EVENT = {
   DELETE_LOBBY: 'lobby/delete',
   LEAVE_LOBBY: 'lobby/leave',
   LOBBY_INFO: 'lobby/info',
-}
+  INVITE: 'lobby/invite'
+};
 
 export const GAME_EVENT = {
   GAME_READY: 'game/ready',
