@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
-import {makeStyles} from '@material-ui/core';
-import {Grid, Typography, FormControl, InputLabel, Input, Box, Button} from '@material-ui/core';
+import React, {useEffect, useState} from 'react';
+import {Link, useLocation} from 'react-router-dom';
+import queryString from 'query-string';
+import {Box, Button, FormControl, Grid, Input, InputLabel, makeStyles, Typography} from '@material-ui/core';
 
 import {useAuth} from "./useAuth";
 import AccountServices from "../service/account-service";
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,21 +20,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login({props}) {
-  const classes = useStyles();
-
+  const {search} = useLocation();
+  const {token} = queryString.parse(search);
   const {login} = useAuth();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const classes = useStyles();
+
+  useEffect(() => {
+    if (token !== undefined) {
+      login(token);
+    }
+  }, [token]);
 
   const handleSubmitLogin = async (event) => {
     event.preventDefault();
-
     const response = await AccountServices.login(email, password);
-
     if (response) {
       login(response.token, response.userInfo);
     }
+  }
+
+  const handleGoogleLogin = () => {
+    window.open(`${API_URL}/users/google`, "_self")
+  }
+
+  const handleFacebookLogin = () => {
+    window.open(`${API_URL}/users/facebook`, "_self");
   }
 
   return (
@@ -84,6 +98,18 @@ export default function Login({props}) {
           <Typography>
             Don't have an account? <Link to="/register">Register</Link>
           </Typography>
+        </Grid>
+        <Grid item>
+          <Button variant="outlined" onClick={() => {
+            handleGoogleLogin();
+          }}>
+            Sign in with Google
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button variant="outlined" onClick={() => handleFacebookLogin()}>
+            Sign in with Facebook
+          </Button>
         </Grid>
       </Grid>
     </div>

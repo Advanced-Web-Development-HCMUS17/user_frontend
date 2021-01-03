@@ -42,6 +42,13 @@ export function AuthProvider({children}) {
     }
   }
 
+  async function login(token) {
+    setToken(token);
+    localStorage.setItem(LS_TOKEN_KEY, token);
+    setUserInfo(await AccountServices.getUserInfo(token));
+    setIsAuth(true);
+  }
+
   function login(token, userInfo) {
     setToken(token);
     localStorage.setItem(LS_TOKEN_KEY, token);
