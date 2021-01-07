@@ -15,6 +15,15 @@ export const GAME_EVENT = {
   GAME_END: 'game/end'
 }
 
+export const HOME_EVENT = {
+  GET_LOBBIES: 'home/lobbies',
+}
+
+export const REPLAY_EVENT = {
+  GET_LOBBIES: 'replay/lobbies',
+  
+}
+
 export const PLAYER_1 = "p1";
 
 export const PLAYER_2 = "p2";

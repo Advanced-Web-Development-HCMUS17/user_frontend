@@ -1,31 +1,33 @@
 import React from "react";
-import {Redirect, Route, Switch, useHistory} from "react-router-dom";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import Register from "./RegisterPage";
 import Login from "./LoginPage";
 import Home from "./HomePage";
-import {useAuth} from "./useAuth";
+import { useAuth } from "./useAuth";
 import Lobby from "./lobby/Lobby";
 import UserStatus from "./userStatus/UserStatus";
+import History from "./replay/History";
+import Replay from "./replay/Replay";
 
-export default function IndexComponent({props}) {
+export default function IndexComponent({ props }) {
   const history = useHistory();
 
-  const {userInfo} = useAuth();
+  const { userInfo } = useAuth();
   return (
     <><Switch>
       <Route exact path="/register">
         {
           userInfo ?
-            <Redirect to="/"/> :
-            <Register/>
+            <Redirect to="/" /> :
+            <Register />
         }
       </Route>
 
       <Route exact path="/login">
         {
           userInfo ?
-            <Redirect to="/"/> :
-            <Login/>
+            <Redirect to="/" /> :
+            <Login />
         }
       </Route>
       <Route exact path="/">
@@ -33,11 +35,21 @@ export default function IndexComponent({props}) {
           userInfo ?
             <Home userInfo={userInfo}
             /> :
-            <Redirect to="/register"/>
+            <Redirect to="/register" />
         }
       </Route>
       <Route path={"/l/:lobbyId"}>
-        <Lobby/>
+        <Lobby />
+      </Route>
+      <Route exact path="/history" >
+        {
+          userInfo ?
+            <History/> :
+            <Redirect to="/register" />
+        }
+      </Route>
+      <Route exact path={"/history/:lobbyId"}>
+        <Replay/>
       </Route>
     </Switch></>
   )

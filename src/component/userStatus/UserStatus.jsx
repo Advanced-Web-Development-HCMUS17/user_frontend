@@ -30,7 +30,7 @@ export default function UserStatus({props}) {
   const usersOnline = useUserStatus();
 
   const classes = useStyles();
-  return (<Grid className={classes.root} item>
+  return (<React.Fragment>
 
     <Box my={2}><Typography variant={"h4"}>Online users</Typography>
       <List>
@@ -44,6 +44,6 @@ export default function UserStatus({props}) {
             </ListItem>))
         }
       </List></Box>
-  </Grid>);
+  </React.Fragment>);
 }
 

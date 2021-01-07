@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {useHistory} from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import Button from "@material-ui/core/Button";
-import {useSocket} from "./socketHook/useSocket";
-import {LOBBY_EVENT} from "./socketHook/EventConstant";
+import { useSocket } from "./socketHook/useSocket";
+import { LOBBY_EVENT } from "./socketHook/EventConstant";
 import UserStatus from "./userStatus/UserStatus";
-import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField} from "@material-ui/core";
-
-export default function Home({userInfo}) {
+import { Container, Dialog, DialogActions, DialogContent, DialogContentText, 
+  DialogTitle, Grid, TextField } from "@material-ui/core";
+import LobbyChoose from './lobbyChoose/LobbyChoose';
+export default function Home({ userInfo }) {
 
   const history = useHistory();
 
-  const {socket, isInitialized} = useSocket();
+  const { socket, isInitialized } = useSocket();
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [roomId, setRoomId] = useState('');
 
@@ -21,7 +22,7 @@ export default function Home({userInfo}) {
   }
 
   useEffect(() => {
-    socket.on(LOBBY_EVENT.CREATE_LOBBY, ({roomId, player}) => {
+    socket.on(LOBBY_EVENT.CREATE_LOBBY, ({ roomId, player }) => {
       history.push(`/l/${roomId}`);
     })
   }, [isInitialized]);
@@ -41,35 +42,43 @@ export default function Home({userInfo}) {
 
   return (
     <div>
-      <UserStatus/>
-      <Button color={"primary"} variant={"outlined"} onClick={createBoard}>Create Board</Button>
-      <Button variant="outlined" color="primary" onClick={handleOpen}>Join game</Button>
-      <Dialog open={dialogIsOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Join game</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Please enter Room ID.
+      <Grid container spacing={0}>
+      <Grid xs={4}>
+        <UserStatus />
+
+        <Button color={"primary"} variant={"outlined"} onClick={createBoard}>Create Board</Button>
+        <Button variant="outlined" color="primary" onClick={handleOpen}>Join game</Button>
+        <Dialog open={dialogIsOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title">Join game</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Please enter Room ID.
           </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="roomID"
-            label="Room ID"
-            type="text"
-            fullWidth
-            variant='outlined'
-            onChange={handleTextChange}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
+            <TextField
+              autoFocus
+              margin="dense"
+              id="roomID"
+              label="Room ID"
+              type="text"
+              fullWidth
+              variant='outlined'
+              onChange={handleTextChange}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
           </Button>
-          <Button onClick={handleJoin} color="primary">
-            Join
+            <Button onClick={handleJoin} color="primary">
+              Join
           </Button>
-        </DialogActions>
-      </Dialog>
+          </DialogActions>
+        </Dialog>
+      </Grid>
+      <Grid xs={8}>
+        <LobbyChoose />
+      </Grid>
+      </Grid>
     </div>
   );
 }
