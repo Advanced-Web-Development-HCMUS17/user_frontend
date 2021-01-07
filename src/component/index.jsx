@@ -1,44 +1,35 @@
 import React from "react";
-import {Redirect, Route, Switch, useHistory} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import Register from "./RegisterPage";
 import Login from "./LoginPage";
 import Home from "./HomePage";
 import {useAuth} from "./useAuth";
 import Lobby from "./lobby/Lobby";
-import UserStatus from "./userStatus/UserStatus";
+import UpdatePasswordPage from "./resetPassword/UpdatePasswordPage";
+import ResetPasswordPage from "./resetPassword/ResetPasswordPage";
+import {LinearProgress} from "@material-ui/core";
+
+const PrivateRoute = ({component: Component, auth: isAuthenticated, ...rest}) => (
+  <Route {...rest} render={props => {
+    if (isAuthenticated === null)
+      return <LinearProgress/>
+    if (isAuthenticated === true)
+      return <Component {...props}/>;
+    return <Redirect to='/login'/>
+  }}/>
+)
 
 export default function IndexComponent({props}) {
-  const history = useHistory();
-
-  const {userInfo} = useAuth();
+  const {isAuth} = useAuth();
   return (
-    <><Switch>
-      <Route exact path="/register">
-        {
-          userInfo ?
-            <Redirect to="/"/> :
-            <Register/>
-        }
-      </Route>
-
-      <Route exact path="/login">
-        {
-          userInfo ?
-            <Redirect to="/"/> :
-            <Login/>
-        }
-      </Route>
-      <Route exact path="/">
-        {
-          userInfo ?
-            <Home userInfo={userInfo}
-            /> :
-            <Redirect to="/register"/>
-        }
-      </Route>
-      <Route path={"/l/:lobbyId"}>
-        <Lobby/>
-      </Route>
-    </Switch></>
+    <Switch>
+      <PrivateRoute exact path="/" auth={isAuth} component={Home}/>
+      <Route exact path="/register">{isAuth ? <Redirect to="/"/> : <Register/>}</Route>
+      <Route exact path="/login">{isAuth ? <Redirect to="/"/> : <Login/>}</Route>
+      <Route exact path="/login/:token">{isAuth ? <Redirect to="/"/> : <Login/>}</Route>
+      <Route exact path="/reset-password/get-code" component={ResetPasswordPage}/>
+      <Route exact path="/reset-password/:email/:code" component={UpdatePasswordPage}/>
+      <PrivateRoute exact path="/l/:lobbyId" auth={isAuth} component={Lobby}/>
+    </Switch>
   )
 }

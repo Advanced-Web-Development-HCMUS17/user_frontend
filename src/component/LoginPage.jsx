@@ -1,30 +1,64 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useLocation} from 'react-router-dom';
-import queryString from 'query-string';
-import {Box, Button, FormControl, Grid, Input, InputLabel, makeStyles, Typography} from '@material-ui/core';
-
+import {
+  Avatar,
+  Button,
+  CircularProgress,
+  CssBaseline,
+  Divider,
+  Grid,
+  IconButton,
+  makeStyles,
+  Paper,
+  TextField
+} from "@material-ui/core";
+import {Link} from 'react-router-dom';
+import {useParams} from "react-router";
 import {useAuth} from "./useAuth";
 import AccountServices from "../service/account-service";
-
-const API_URL = process.env.REACT_APP_API_URL;
+import Typography from "@material-ui/core/Typography";
+import AlertDialog from "./dialog/AlertDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    padding: 50,
+    height: '100vh',
   },
-  title: {
-    color: '#283593',
-    fontWeight: "bold"
-  }
+  image: {
+    backgroundImage: 'url(https://www.ocregister.com/wp-content/uploads/2018/11/1118-REAL-BUCHANAN-BRADYBUNCH-1.jpg)',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundSize: 'cover',
+    backgroundPosition: 'right',
+    transform: 'scaleX(-1)',
+  },
+  paper: {
+    margin: theme.spacing(8, 4),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  label: {
+    paddingTop: "50px",
+  },
 }));
 
-export default function Login({props}) {
-  const {search} = useLocation();
-  const {token} = queryString.parse(search);
+const API_URL = process.env.REACT_APP_API_URL;
+
+export default function LoginPage() {
+  const {token} = useParams();
   const {login} = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [inProgress, setInProgress] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState('');
   const classes = useStyles();
 
   useEffect(() => {
@@ -35,9 +69,19 @@ export default function Login({props}) {
 
   const handleSubmitLogin = async (event) => {
     event.preventDefault();
+    if (email.length === 0 || password.length === 0) {
+      setMessage("Please enter email and password");
+      return setOpen(true);
+    }
+    setInProgress(true);
     const response = await AccountServices.login(email, password);
+    setInProgress(false);
     if (response) {
-      login(response.token, response.userInfo);
+      if (response.error) {
+        setMessage(response.message);
+        setOpen(true);
+      } else
+        login(response.token, response.userInfo);
     }
   }
 
@@ -50,68 +94,90 @@ export default function Login({props}) {
   }
 
   return (
-    <div className={classes.root}>
-      <Grid container direction="column" justify="center" alignItems="center" spacing={2}>
-        <Grid item>
-          <Typography className={classes.title} variant="h4">
-            Login
-          </Typography>
-        </Grid>
-        <Grid item>
-          <form onSubmit={(e) => handleSubmitLogin(e)}>
-            <Grid container direction="column" justify="center" alignItems="center" spacing={2}>
-              <Grid item>
-                <FormControl>
-                  <Box width={350}>
-                    <InputLabel htmlFor="input-email">Email</InputLabel>
-                    <Input
-                      id="input-email"
-                      type="text"
-                      fullWidth
-                      value={email}
-                      onInput={e => setEmail(String(e.target.value))}
-                    />
-                  </Box>
-                </FormControl>
+    <div>
+      <Grid container component="main" className={classes.root}>
+        <CssBaseline/>
+        <Grid item xs={false} sm={4} md={7} className={classes.image}/>
+        <Grid container direction="column" justify="center" item xs={12} sm={8} md={5} component={Paper} elevation={6}
+              square>
+          <Grid item>
+            <div className={classes.paper}>
+              <Typography component="h1" variant="h5">
+                Sign in
+              </Typography>
+              <form className={classes.form} noValidate onSubmit={(e) => handleSubmitLogin(e)}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  value={email}
+                  onInput={e => setEmail(String(e.target.value))}
+                  onClick={() => setEmail('')}
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  value={password}
+                  onInput={e => setPassword(String(e.target.value))}
+                  onClick={() => setPassword('')}
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                  disabled={inProgress}
+                >
+                  {inProgress ? <CircularProgress/> : "Sign in"}
+                </Button>
+                <Grid container>
+                  <Grid item xs>
+                    <Link to="/reset-password/get-code" variant="body2">
+                      Forgot password?
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link to="/register" variant="body2">
+                      {"Don't have an account? Sign Up"}
+                    </Link>
+                  </Grid>
+                </Grid>
+              </form>
+              <Divider variant="middle"/>
+              <Typography className={classes.label}>
+                Or sign up with
+              </Typography>
+              <Grid container direction="row" justify="center">
+                <Grid item>
+                  <IconButton onClick={() => handleGoogleLogin()}>
+                    <Avatar src="https://i.stack.imgur.com/22WR2.png"/>
+                  </IconButton>
+                </Grid>
+                <Grid item>
+                  <IconButton onClick={() => handleFacebookLogin()}>
+                    <Avatar src="https://image.flaticon.com/icons/png/512/174/174848.png"/>
+                  </IconButton>
+                </Grid>
               </Grid>
-              <Grid item>
-                <FormControl>
-                  <Box width={350}>
-                    <InputLabel htmlFor="input-password">Password</InputLabel>
-                    <Input
-                      id="input-password"
-                      type="password"
-                      fullWidth
-                      value={password}
-                      onInput={e => setPassword(String(e.target.value))}
-                    />
-                  </Box>
-                </FormControl>
-              </Grid>
-              <Grid item>
-                <Button type="submit">Login</Button>
-              </Grid>
-            </Grid>
-          </form>
-        </Grid>
-        <Grid item>
-          <Typography>
-            Don't have an account? <Link to="/register">Register</Link>
-          </Typography>
-        </Grid>
-        <Grid item>
-          <Button variant="outlined" onClick={() => {
-            handleGoogleLogin();
-          }}>
-            Sign in with Google
-          </Button>
-        </Grid>
-        <Grid item>
-          <Button variant="outlined" onClick={() => handleFacebookLogin()}>
-            Sign in with Facebook
-          </Button>
+            </div>
+          </Grid>
         </Grid>
       </Grid>
+      <AlertDialog open={open} title="Warning" content={message} handleClose={() => setOpen(false)}/>
     </div>
   );
 }

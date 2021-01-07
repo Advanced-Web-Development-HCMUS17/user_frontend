@@ -1,11 +1,8 @@
 import './App.css';
 import {SocketProvider} from "./component/socketHook/useSocket";
-import React, {useState} from "react";
+import React from "react";
 import {UserStatusProvider} from "./component/userStatus/useUserStatus";
-import UserStatus from "./component/userStatus/UserStatus";
-import Container from "@material-ui/core/Container";
-import NavigationBar from "./component/NavigationBar";
-import {AuthProvider, useAuth} from "./component/useAuth";
+import {AuthProvider} from "./component/useAuth";
 import IndexComponent from "./component";
 
 function App() {
@@ -13,10 +10,7 @@ function App() {
     <AuthProvider>
       <SocketProvider>
         <UserStatusProvider>
-          <NavigationBar/>
-          <Container maxWidth={false}>
-            <IndexComponent/>
-          </Container>
+          <IndexComponent/>
         </UserStatusProvider>
       </SocketProvider>
     </AuthProvider>

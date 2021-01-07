@@ -12,6 +12,7 @@ import Box from "@material-ui/core/Box";
 import Game from "../game/Game";
 import ChatLayout from "../chat";
 import { useAuth } from '../useAuth';
+import NavigationBar from "../NavigationBar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     backgroundColor: `#3F51B5`,
-    color: `#ffffff`
+    color: `#ffffff`,
+  },
+  rootContainer:{
+    paddingInline: "25px",
   }
 }));
 
@@ -72,7 +76,9 @@ export default function Lobby() {
   }
 
   return (
-    <Grid container direction='column' spacing={1}>
+    <>
+    <NavigationBar/>
+    <Grid container direction='column' spacing={1} className={classes.rootContainer}>
       <Grid item md={12}>
         <p>{JSON.stringify(lobbyInfo)}</p>
       </Grid>
@@ -170,5 +176,6 @@ export default function Lobby() {
         </Grid>
       </Grid>
     </Grid>
+    </>
   )
 }
