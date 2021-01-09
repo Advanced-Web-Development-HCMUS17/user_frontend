@@ -40,6 +40,15 @@ async function login(email, password) {
   }
 }
 
+async function loginByToken(token) {
+  try {
+    const res = await axios.get(`${API_URL}/users/info`, {headers: {"Authorization": token}});
+    return {token: token, userInfo: res};
+  } catch (e) {
+    return {"error": e.response.status, "message": "Invalid login request"};
+  }
+}
+
 async function getUserInfo(token) {
   try {
     const res = await axios.get(`${API_URL}/users/info`, {
@@ -89,5 +98,5 @@ async function updatePassword(email, code, newPassword) {
   }
 }
 
-const AccountServices = {login, register, getUserInfo, resetPasswordRequest, updatePassword};
+const AccountServices = {login, loginByToken, register, getUserInfo, resetPasswordRequest, updatePassword};
 export default AccountServices;

@@ -9,7 +9,7 @@ import AccountServices from "../../service/account-service";
 import {CircularProgress} from "@material-ui/core";
 import Template1 from "./Template1";
 import validator from "../../service/data-validator";
-import AlertDialog from "../dialog/AlertDialog";
+import {CSnackbars, TYPE} from "../userAuthentication/CSnackBar";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -41,7 +41,7 @@ export default function RegisterPage() {
   const handleUpdatePassword = async (event) => {
     event.preventDefault();
     if (password.length === 0 || !validator.password(password)) {
-      setTitle("Warning");
+      setTitle(TYPE.WARNING);
       setMessage("Password must have at least 8 characters includes: 1 letter, 1 number and 1 special character");
       setRedirect(false);
       return setOpen(true);
@@ -50,12 +50,12 @@ export default function RegisterPage() {
     const response = await AccountServices.updatePassword(email, code, password);
     setInProgress(false);
     if (response.error) {
-      setTitle("Warning");
+      setTitle(TYPE.ERROR);
       setMessage(response.message);
       setRedirect(false);
       setOpen(true);
     } else {
-      setTitle("Information");
+      setTitle(TYPE.SUCCESS);
       setMessage("Update password successfully");
       setRedirect(true);
       setOpen(true);
@@ -69,6 +69,21 @@ export default function RegisterPage() {
       </Typography>
       <form className={classes.form} noValidate>
         <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              name="Email"
+              label="Email"
+              type="email"
+              id="email"
+              value={email}
+              disabled
+              onInput={e => setPassword(String(e.target.value))}
+              onClick={() => setPassword('')}
+            />
+          </Grid>
           <Grid item xs={12}>
             <TextField
               variant="outlined"
@@ -103,7 +118,7 @@ export default function RegisterPage() {
   return (
     <>
       <Template1 childComponent={childComponent}/>
-      <AlertDialog open={open} title={title} content={message} handleClose={() => {
+      <CSnackbars open={open} type={title} message={message} handleClose={() => {
         setOpen(false);
         redirect && history.push("/login");
       }}/>

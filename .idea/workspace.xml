@@ -23,20 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c2eed82-f7ee-4052-b421-b7c8c3a5c232" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/dialog/AlertDialog.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/dialog/FormDialog.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/resetPassword/ResetPasswordPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/resetPassword/Template1.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/resetPassword/UpdatePasswordPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/data-validator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/userAuthentication/CSnackBar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Header.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/HomePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/LoginPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/RegisterPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/RegisterPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/lobby/Lobby.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/lobby/Lobby.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/resetPassword/ResetPasswordPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/resetPassword/ResetPasswordPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/resetPassword/UpdatePasswordPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/resetPassword/UpdatePasswordPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/useAuth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/useAuth.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/account-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/account-service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
@@ -76,7 +70,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/component/dialog" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -160,7 +154,10 @@
       <workItem from="1608703427670" duration="18561000" />
       <workItem from="1609825000350" duration="2690000" />
       <workItem from="1609889377882" duration="47605000" />
-      <workItem from="1610008101664" duration="31298000" />
+      <workItem from="1610008101664" duration="32324000" />
+      <workItem from="1610070872049" duration="3846000" />
+      <workItem from="1610082280935" duration="438000" />
+      <workItem from="1610118362647" duration="17138000" />
     </task>
     <task id="LOCAL-00001" summary="+ init project">
       <created>1607155722102</created>
@@ -204,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609659831642</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="+Active account, password reset by email&#10;&#10;Redesign Sign in, Sign up page&#10;Prevent showing login screen when back to home page">
+      <created>1610048099627</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1610048099627</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,6 +247,8 @@
     <MESSAGE value="+Chat component, !Lobby, !EventContant&#10;&#10;Add chat function in Game Room&#10;Use useAuth to get curent user in Lobby.jsx&#10;Add some constant for chat socket in EventConstant.jsx" />
     <MESSAGE value="+Add UI for share and join Game Room, !HomePage, !Lobby, !Chat component&#10;&#10;Add UI for share and join Game Room.&#10;Styled UI for Chat Component" />
     <MESSAGE value="+ Passport FB Google login&#10;&#10;fb.acc.example: FB test account" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ Passport FB Google login&#10;&#10;fb.acc.example: FB test account" />
+    <MESSAGE value="+Active account, password reset by email&#10;&#10;Redesign Sign in, Sign up page&#10;Prevent showing login screen when back to home page" />
+    <MESSAGE value="!Register, useAuth: handle BANNED user, prevent fetchUserInfo with undefined token" />
+    <option name="LAST_COMMIT_MESSAGE" value="!Register, useAuth: handle BANNED user, prevent fetchUserInfo with undefined token" />
   </component>
 </project>

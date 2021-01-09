@@ -16,14 +16,14 @@ import {useParams} from "react-router";
 import {useAuth} from "./useAuth";
 import AccountServices from "../service/account-service";
 import Typography from "@material-ui/core/Typography";
-import AlertDialog from "./dialog/AlertDialog";
+import {CSnackbars, TYPE} from "./userAuthentication/CSnackBar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://www.ocregister.com/wp-content/uploads/2018/11/1118-REAL-BUCHANAN-BRADYBUNCH-1.jpg)',
+    backgroundImage: 'url(https://i.ibb.co/pP5dHL3/tictactoe.jpg)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -59,30 +59,45 @@ export default function LoginPage() {
   const [inProgress, setInProgress] = useState(false);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
+  const [type, setType] = useState(TYPE.INFO);
   const classes = useStyles();
 
-  useEffect(() => {
+  const autoLogin = async (token) => {
     if (token !== undefined) {
-      login(token);
+      setInProgress(true);
+      const response = await AccountServices.loginByToken(token);
+      setInProgress(false);
+      if (response.error) {
+        setType(TYPE.ERROR);
+        setMessage(response.message);
+        setOpen(true);
+      } else
+        login(response.token, response.userInfo);
     }
+  }
+
+  useEffect(() => {
+    if (token !== undefined)
+      autoLogin(token);
   }, [token]);
 
   const handleSubmitLogin = async (event) => {
     event.preventDefault();
     if (email.length === 0 || password.length === 0) {
+      setType(TYPE.WARNING);
       setMessage("Please enter email and password");
       return setOpen(true);
     }
     setInProgress(true);
     const response = await AccountServices.login(email, password);
     setInProgress(false);
-    if (response) {
+    if (response)
       if (response.error) {
+        setType(TYPE.ERROR);
         setMessage(response.message);
         setOpen(true);
       } else
         login(response.token, response.userInfo);
-    }
   }
 
   const handleGoogleLogin = () => {
@@ -94,7 +109,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div>
+    <>
       <Grid container component="main" className={classes.root}>
         <CssBaseline/>
         <Grid item xs={false} sm={4} md={7} className={classes.image}/>
@@ -177,7 +192,7 @@ export default function LoginPage() {
           </Grid>
         </Grid>
       </Grid>
-      <AlertDialog open={open} title="Warning" content={message} handleClose={() => setOpen(false)}/>
-    </div>
+      <CSnackbars open={open} handleClose={() => setOpen(false)} type={type} message={message}/>
+    </>
   );
 }

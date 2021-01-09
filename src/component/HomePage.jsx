@@ -52,22 +52,22 @@ export default function Home() {
     <>
       <NavigationBar/>
       <Grid container direction="row" spacing={5} className={classes.root}>
-        <Grid item xs={4}>
-          <UserStatus/>
-        </Grid>
-        <Grid container direction="column" item xs={2} spacing={2} className={classes.btnGroup}>
+        <Grid container direction="column" item xs={8} spacing={2} className={classes.btnGroup}>
           <Grid item>
-            <Button color="#009E3A" variant="contained" startIcon={<LibraryAdd/>} onClick={createBoard}
+            <Button variant="contained" startIcon={<LibraryAdd/>} onClick={createBoard}
                     className={classes.btnCreate}>
               Create Board
             </Button>
           </Grid>
           <Grid item>
-            <Button color="primary" variant="contained" startIcon={<ExitToApp/>} onClick={() => setOpen(true)}
+            <Button variant="contained" startIcon={<ExitToApp/>} onClick={() => setOpen(true)}
                     className={classes.btnJoin}>
               Join game
             </Button>
           </Grid>
+        </Grid>
+        <Grid item xs>
+          <UserStatus/>
         </Grid>
       </Grid>
       <FormDialog

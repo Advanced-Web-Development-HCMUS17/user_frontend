@@ -8,8 +8,8 @@ import {useHistory} from "react-router";
 import AccountServices from "../../service/account-service";
 import {CircularProgress} from "@material-ui/core";
 import Template1 from "./Template1";
-import AlertDialog from "../dialog/AlertDialog";
 import validator from "../../service/data-validator";
+import {CSnackbars, TYPE} from "../userAuthentication/CSnackBar";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,7 +40,7 @@ export default function RegisterPage() {
   const handleSubmitButtonClick = async (event) => {
     event.preventDefault();
     if (email.length === 0 || !validator.email(email)) {
-      setTitle("Warning");
+      setTitle(TYPE.WARNING);
       setMessage("Please input valid email");
       setRedirect(false);
       return setOpen(true);
@@ -49,12 +49,12 @@ export default function RegisterPage() {
     const response = await AccountServices.resetPasswordRequest(email);
     setInProgress(false);
     if (response.error) {
-      setTitle("Warning");
+      setTitle(TYPE.ERROR);
       setMessage(response.message);
       setRedirect(false);
       setOpen(true);
     } else {
-      setTitle("Information");
+      setTitle(TYPE.SUCCESS);
       setMessage("A email was sent to " + email);
       setRedirect(true);
       setOpen(true);
@@ -102,7 +102,7 @@ export default function RegisterPage() {
   return (
     <>
       <Template1 childComponent={childComponent}/>
-      <AlertDialog open={open} title={title} content={message} handleClose={() => {
+      <CSnackbars open={open} type={title} message={message} duration={redirect ? 3000 : 5000} handleClose={() => {
         setOpen(false);
         redirect && history.push("/login");
       }}/>
