@@ -8,6 +8,7 @@ import Lobby from "./lobby/Lobby";
 import UpdatePasswordPage from "./resetPassword/UpdatePasswordPage";
 import ResetPasswordPage from "./resetPassword/ResetPasswordPage";
 import {LinearProgress} from "@material-ui/core";
+import ProfilePage from "./ProfilePage";
 
 const PrivateRoute = ({component: Component, auth: isAuthenticated, ...rest}) => (
   <Route {...rest} render={props => {
@@ -20,7 +21,7 @@ const PrivateRoute = ({component: Component, auth: isAuthenticated, ...rest}) =>
 )
 
 export default function IndexComponent({props}) {
-  const {isAuth} = useAuth();
+  const {isAuth, userInfo} = useAuth();
   return (
     <Switch>
       <PrivateRoute exact path="/" auth={isAuth} component={Home}/>
@@ -30,6 +31,7 @@ export default function IndexComponent({props}) {
       <Route exact path="/reset-password/get-code" component={ResetPasswordPage}/>
       <Route exact path="/reset-password/:email/:code" component={UpdatePasswordPage}/>
       <PrivateRoute exact path="/l/:lobbyId" auth={isAuth} component={Lobby}/>
+      <PrivateRoute exact path="/profile" auth={isAuth} component={() => ProfilePage(userInfo)}/>
     </Switch>
   )
 }

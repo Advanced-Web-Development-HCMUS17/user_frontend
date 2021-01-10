@@ -23,17 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c2eed82-f7ee-4052-b421-b7c8c3a5c232" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/userAuthentication/CSnackBar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/ProfilePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/HomePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/LoginPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/RegisterPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/RegisterPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/resetPassword/ResetPasswordPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/resetPassword/ResetPasswordPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/resetPassword/UpdatePasswordPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/resetPassword/UpdatePasswordPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/useAuth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/useAuth.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/NavigationBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/NavigationBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/socketHook/EventConstant.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/socketHook/EventConstant.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/account-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/account-service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +154,7 @@
       <workItem from="1610008101664" duration="32324000" />
       <workItem from="1610070872049" duration="3846000" />
       <workItem from="1610082280935" duration="438000" />
-      <workItem from="1610118362647" duration="17138000" />
+      <workItem from="1610118362647" duration="49918000" />
     </task>
     <task id="LOCAL-00001" summary="+ init project">
       <created>1607155722102</created>
@@ -208,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610048099627</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="!Register, useAuth: handle BANNED user, prevent fetchUserInfo with undefined token">
+      <created>1610165389625</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1610165389625</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

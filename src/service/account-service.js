@@ -43,7 +43,7 @@ async function login(email, password) {
 async function loginByToken(token) {
   try {
     const res = await axios.get(`${API_URL}/users/info`, {headers: {"Authorization": token}});
-    return {token: token, userInfo: res};
+    return {token: token, userInfo: res.data};
   } catch (e) {
     return {"error": e.response.status, "message": "Invalid login request"};
   }
@@ -98,5 +98,41 @@ async function updatePassword(email, code, newPassword) {
   }
 }
 
-const AccountServices = {login, loginByToken, register, getUserInfo, resetPasswordRequest, updatePassword};
+async function getBoardList(token) {
+  try {
+    const res = await axios.get(`${API_URL}/users/saved-games`, {headers: {"Authorization": token}});
+    return res.data.games;
+  } catch (e) {
+    const res = e.response;
+    return {"error": res.status, "message": res.message};
+  }
+}
+
+async function updateAvatar(token, file) {
+  try {
+    const formData = new FormData();
+    formData.append('avatar', file);
+    const res = await axios.post(`${API_URL}/users/update/avatar`, formData, {
+      headers: {
+        "Authorization": token,
+        'content-type': 'multipart/form-data'
+      }
+    });
+    return {data: res.data, message: "Updated avatar successfully"};
+  } catch (e) {
+    const res = e.response;
+    return {error: res.status, message: "Error occurred. Please tra again."};
+  }
+}
+
+const AccountServices = {
+  login,
+  loginByToken,
+  register,
+  getUserInfo,
+  resetPasswordRequest,
+  updatePassword,
+  getBoardList,
+  updateAvatar,
+};
 export default AccountServices;

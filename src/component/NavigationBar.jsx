@@ -9,6 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import {useAuth} from "./useAuth";
+import {useHistory} from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,20 +25,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavigationBar() {
   const classes = useStyles();
+  const history = useHistory();
+  const {logout} = useAuth();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleViewProfile = () => {
     setAnchorEl(null);
+    history.push("/profile");
   };
-  const {logout} = useAuth();
-  const handleLogout = ()=>
-  {
+
+  const handleLogout = () => {
     setAnchorEl(null);
     logout();
   }
@@ -49,7 +51,7 @@ export default function NavigationBar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon/>
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.title} onClick={() => history.push('/')}>
             Caro đỉnh cấp
           </Typography>
           <div>
@@ -75,9 +77,9 @@ export default function NavigationBar() {
                 horizontal: 'right',
               }}
               open={open}
-              onClose={handleClose}
+              onClose={handleViewProfile}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleViewProfile}>Profile</MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </div>

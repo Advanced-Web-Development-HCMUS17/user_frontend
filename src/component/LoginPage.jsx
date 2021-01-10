@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://i.ibb.co/pP5dHL3/tictactoe.jpg)',
+    backgroundImage: 'url(https://i.ibb.co/sHx17Df/tictactoe.jpg)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],

@@ -8,7 +8,7 @@ import NavigationBar from "./NavigationBar";
 import FormDialog from "./dialog/FormDialog";
 import {Grid} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
-import {ExitToApp, LibraryAdd} from "@material-ui/icons";
+import {ExitToApp, FlashOnRounded, LibraryAdd} from "@material-ui/icons";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -42,6 +42,12 @@ export default function Home() {
     }
   }
 
+  function findMatch() {
+    if(isInitialized){
+      socket.emit()
+    }
+  }
+
   useEffect(() => {
     socket.on(LOBBY_EVENT.CREATE_LOBBY, ({roomId, player}) => {
       history.push(`/l/${roomId}`);
@@ -56,13 +62,19 @@ export default function Home() {
           <Grid item>
             <Button variant="contained" startIcon={<LibraryAdd/>} onClick={createBoard}
                     className={classes.btnCreate}>
-              Create Board
+              Create room
             </Button>
           </Grid>
           <Grid item>
             <Button variant="contained" startIcon={<ExitToApp/>} onClick={() => setOpen(true)}
                     className={classes.btnJoin}>
               Join game
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" startIcon={<FlashOnRounded/>} onClick={findMatch}
+                    className={classes.btnCreate}>
+              Quick Match
             </Button>
           </Grid>
         </Grid>
