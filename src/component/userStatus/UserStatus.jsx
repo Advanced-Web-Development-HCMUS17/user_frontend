@@ -10,12 +10,13 @@ import Paper from "@material-ui/core/Paper";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import green from "@material-ui/core/colors/green";
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: green["A200"]
   },
   paper: {
     height: 140,
@@ -30,20 +31,23 @@ export default function UserStatus({props}) {
   const usersOnline = useUserStatus();
 
   const classes = useStyles();
-  return (<Grid className={classes.root} item>
-
-    <Box my={2}><Typography variant={"h4"}>Online users</Typography>
-      <List>
-        {
-          usersOnline.map(user => (
-            <ListItem key={user._id}>
-              <ListItemIcon>
-                <Person/>
-              </ListItemIcon>
-              <ListItemText primary={user.user.username} secondary={user.user.email}/>
-            </ListItem>))
-        }
-      </List></Box>
+  return (<Grid item>
+    <Box p={2}>
+      <Paper className={classes.root}>
+        <Box p={2} textAlign={"center"} fontWeight={"bold"}><Typography variant={"h5"}>Online users</Typography>
+          <List>
+            {
+              usersOnline.map(user => (
+                <ListItem key={user._id}>
+                  <ListItemIcon>
+                    <Person/>
+                  </ListItemIcon>
+                  <ListItemText primary={user.user.username} secondary={user.user.email}/>
+                </ListItem>))
+            }
+          </List></Box>
+      </Paper>
+    </Box>
   </Grid>);
 }
 

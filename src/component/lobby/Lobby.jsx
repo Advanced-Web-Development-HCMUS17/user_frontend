@@ -65,6 +65,11 @@ export default function Lobby() {
       });
 
     }
+    return () => {
+      if (socket) {
+        socket.emit(LOBBY_EVENT.LEAVE_LOBBY);
+      }
+    }
   }, [isInitialized]);
 
   const [open, setOpen] = React.useState(false);

@@ -39,10 +39,6 @@ export function UserStatusProvider({children}) {
         setOnlineUsers(users);
       });
 
-      currSocket.on(USER_EVENT.OFFLINE, (message) => {
-        const {id} = message;
-        setOnlineUsers(onlineUsers.filter(user => user.id !== id));
-      });
       // return () => {currSocket.off()}
     }
     , [isInitialized]);

@@ -19,15 +19,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8751b39c-aee8-427a-98bd-860b6f777286" name="Default Changelist" comment="! useSocket.jsx +createLobby, joinLobby by login and join lobby url">
-      <change afterPath="$PROJECT_DIR$/src/component/lobby/InvitationSnackBar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/lobby/InviteDialog.jsx" afterDir="false" />
+    <list default="true" id="8751b39c-aee8-427a-98bd-860b6f777286" name="Default Changelist" comment="+ Invite player">
+      <change afterPath="$PROJECT_DIR$/src/component/LobbyList/LobbyList.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/api.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/HomePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/NavigationBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/NavigationBar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/lobby/Lobby.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/lobby/Lobby.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/socketHook/EventConstant.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/socketHook/EventConstant.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/userStatus/UserStatus.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/userStatus/UserStatus.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/userStatus/useUserStatus.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/userStatus/useUserStatus.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/userStatus/userStatusHandler.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/leaderboard/Leaderboard.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +56,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../user_backend" />
@@ -65,6 +70,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Learning\4_1_Advanced_web_development\DACK\user_frontend\src\component\LobbyList" />
       <recent name="D:\Learning\4_1_Advanced_web_development\DACK\user_frontend\src\component" />
       <recent name="D:\Learning\4_1_Advanced_web_development\DACK\user_frontend\src\component\socketHook" />
     </key>
@@ -121,7 +127,12 @@
       <workItem from="1608563934738" duration="23000" />
       <workItem from="1608650112500" duration="2843000" />
       <workItem from="1608738547507" duration="248000" />
-      <workItem from="1609383857352" duration="10041000" />
+      <workItem from="1609383857352" duration="10340000" />
+      <workItem from="1609476367627" duration="4497000" />
+      <workItem from="1609987506185" duration="675000" />
+      <workItem from="1610116691169" duration="1760000" />
+      <workItem from="1610160807313" duration="1342000" />
+      <workItem from="1610283586851" duration="10797000" />
     </task>
     <task id="LOCAL-00001" summary="+ init project">
       <created>1607155722102</created>
@@ -158,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607792969883</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="+ Invite player">
+      <created>1609474404006</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1609474404006</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,7 +200,8 @@
     <MESSAGE value="+ use socket, + useUserStatus, +set up socket.io" />
     <MESSAGE value="- useSocket, + logout button" />
     <MESSAGE value="! useSocket.jsx +createLobby, joinLobby by login and join lobby url" />
-    <option name="LAST_COMMIT_MESSAGE" value="! useSocket.jsx +createLobby, joinLobby by login and join lobby url" />
+    <MESSAGE value="+ Invite player" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ Invite player" />
   </component>
   <component name="WindowStateProjectService">
     <state x="582" y="182" key="#Inspections" timestamp="1607355750326">
@@ -209,22 +228,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1132" y="312" width="542" height="602" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607703430825" />
-    <state width="1893" height="160" key="GridCell.Tab.0.bottom" timestamp="1609396502784">
+    <state width="1893" height="160" key="GridCell.Tab.0.bottom" timestamp="1610295199954">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1893" height="160" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609396502784" />
-    <state width="1893" height="160" key="GridCell.Tab.0.center" timestamp="1609396502784">
+    <state width="1893" height="160" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1610295199954" />
+    <state width="1893" height="160" key="GridCell.Tab.0.center" timestamp="1610295199953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1893" height="160" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609396502784" />
-    <state width="1893" height="160" key="GridCell.Tab.0.left" timestamp="1609396502784">
+    <state width="1893" height="160" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1610295199953" />
+    <state width="1893" height="160" key="GridCell.Tab.0.left" timestamp="1610295199953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1893" height="160" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609396502784" />
-    <state width="1893" height="160" key="GridCell.Tab.0.right" timestamp="1609396502784">
+    <state width="1893" height="160" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1610295199953" />
+    <state width="1893" height="160" key="GridCell.Tab.0.right" timestamp="1610295199953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1893" height="160" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609396502784" />
+    <state width="1893" height="160" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1610295199953" />
     <state width="1893" height="331" key="GridCell.Tab.1.bottom" timestamp="1607275026757">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -277,22 +296,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609383972256" />
-    <state x="452" y="188" key="Vcs.Push.Dialog.v2" timestamp="1607792974047">
+    <state x="452" y="188" key="Vcs.Push.Dialog.v2" timestamp="1610294652989">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="452" y="188" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607792974047" />
-    <state x="737" y="415" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609383957033">
+    <state x="452" y="188" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610294652989" />
+    <state x="737" y="415" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610161845199">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="737" y="415" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609383957033" />
-    <state x="605" y="188" width="710" height="664" key="find.popup" timestamp="1607447251372">
+    <state x="737" y="415" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610161845199" />
+    <state x="605" y="188" width="710" height="664" key="find.popup" timestamp="1610292492660">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="605" y="188" width="710" height="664" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607447251372" />
-    <state x="666" y="163" key="git4idea.branch.GitSmartOperationDialog" timestamp="1608180165714">
+    <state x="605" y="188" width="710" height="664" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610292492660" />
+    <state x="666" y="163" key="git4idea.branch.GitSmartOperationDialog" timestamp="1610161899508">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="666" y="163" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608180165714" />
+    <state x="666" y="163" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610161899508" />
     <state x="514" y="179" width="875" height="663" key="recent.locations.popup" timestamp="1607441263834">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -301,5 +320,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="532" y="237" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607441275956" />
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1610287506709">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610287506709" />
   </component>
 </project>

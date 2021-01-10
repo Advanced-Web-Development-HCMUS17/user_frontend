@@ -12,6 +12,7 @@ import InvitationSnackBar from "./lobby/InvitationSnackBar";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from '@material-ui/lab/Alert';
 import {Button} from "@material-ui/core";
+import NavigationBar from "./NavigationBar";
 
 
 function Alert(props) {
@@ -61,34 +62,35 @@ export default function IndexComponent({props}) {
   }
 
   return (
-    <><Switch>
-      <Route exact path="/register">
-        {
-          userInfo ?
-            <Redirect to="/"/> :
-            <Register/>
-        }
-      </Route>
+    <>
+      <Switch>
+        <Route exact path="/register">
+          {
+            userInfo ?
+              <Redirect to="/"/> :
+              <Register/>
+          }
+        </Route>
 
-      <Route exact path="/login">
-        {
-          userInfo ?
-            <Redirect to="/"/> :
-            <Login/>
-        }
-      </Route>
-      <Route exact path="/">
-        {
-          userInfo ?
-            <Home userInfo={userInfo}
-            /> :
-            <Redirect to="/register"/>
-        }
-      </Route>
-      <Route path={"/l/:lobbyId"}>
-        <Lobby/>
-      </Route>
-    </Switch>
+        <Route exact path="/login">
+          {
+            userInfo ?
+              <Redirect to="/"/> :
+              <Login/>
+          }
+        </Route>
+        <Route exact path="/">
+          {
+            userInfo ?
+              <Home userInfo={userInfo}
+              /> :
+              <Redirect to="/register"/>
+          }
+        </Route>
+        <Route path={"/l/:lobbyId"}>
+          <Lobby/>
+        </Route>
+      </Switch>
       {inviteUser && <Snackbar open={open} autoHideDuration={30000} onClose={handleClose}>
         <Alert onClose={handleClose} severity={"info"}>
           Loser {inviteUser.username} has invited you for a duel <Button variant={"outlined"} color={"inherit"}

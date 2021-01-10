@@ -9,6 +9,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import {useAuth} from "./useAuth";
+import Box from "@material-ui/core/Box";
+import {NavLink} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    color: "inherit"
   },
 }));
 
@@ -36,8 +39,7 @@ export default function NavigationBar() {
     setAnchorEl(null);
   };
   const {logout} = useAuth();
-  const handleLogout = ()=>
-  {
+  const handleLogout = () => {
     setAnchorEl(null);
     logout();
   }
@@ -50,7 +52,7 @@ export default function NavigationBar() {
             <MenuIcon/>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Caro đỉnh cấp
+            <NavLink to={"/"} light>Caro đỉnh cấp</NavLink>
           </Typography>
           <div>
             <IconButton
