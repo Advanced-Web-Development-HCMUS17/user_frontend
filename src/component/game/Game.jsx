@@ -57,7 +57,7 @@ function Game() {
         if (socket) {
 
             socket.on(GAME_EVENT.GAME_START, ({ userFirst, userSecond, boardSize }) => {
-                const status = "Next player: " + userFirst;
+                const status = "Next player: " + userFirst.username;
 
                 setContent([], null, boardSize, status);
                 console.log("Game start!!!");

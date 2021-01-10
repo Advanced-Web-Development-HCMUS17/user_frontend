@@ -47,7 +47,7 @@ export default function NavigationBar() {
   const handleHistory = () => {   
     console.log('Working');
     setAnchorEl(null);
-    history.push(`/replay`);
+    history.push(`/history`);
   }
 
   return (

@@ -75,9 +75,7 @@ export default function Home({ userInfo }) {
           </DialogActions>
         </Dialog>
       </Grid>
-      <Grid xs={8}>
-        <LobbyChoose />
-      </Grid>
+      
       </Grid>
     </div>
   );

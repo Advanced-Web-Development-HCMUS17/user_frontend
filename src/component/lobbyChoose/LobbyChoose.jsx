@@ -121,7 +121,7 @@ const useStyles = makeStyles((theme) => ({
                         {value.id}
                       </Typography>
                       <Typography>
-                        {value.player1? value.player1:null} vs {value.player2? value.player2:null}
+                        {value.player1? value.player1.username:null} vs {value.player2? value.player2.username:null}
                       </Typography>
                     </CardContent>
                     <CardActions>

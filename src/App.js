@@ -6,6 +6,7 @@ import UserStatus from "./component/userStatus/UserStatus";
 import Container from "@material-ui/core/Container";
 import NavigationBar from "./component/NavigationBar";
 import {AuthProvider, useAuth} from "./component/useAuth";
+import ReplayProvider from './component/replay/useReplay';
 import IndexComponent from "./component";
 
 function App() {
@@ -13,10 +14,12 @@ function App() {
     <AuthProvider>
       <SocketProvider>
         <UserStatusProvider>
+          <ReplayProvider>
           <NavigationBar/>
           <Container maxWidth={false}>
             <IndexComponent/>
           </Container>
+          </ReplayProvider>
         </UserStatusProvider>
       </SocketProvider>
     </AuthProvider>

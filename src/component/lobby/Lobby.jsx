@@ -78,7 +78,7 @@ export default function Lobby() {
       </Grid>
       <Grid item md={12}>
         <Grid container direction='row' spacing={1}>
-          <Grid item md={5}>
+          <Grid item md={7}>
             <Grid container direction='column' spacing={1}>
               <Grid item md={12}>
                 <Grid container direction='row' spacing={1}>
@@ -105,7 +105,7 @@ export default function Lobby() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item md={4}>
+          <Grid item md={2}>
             <Grid container direction='row' spacing={2}>
               <Grid item md={12}>
                 <Paper className={classes.title} elevation={1} square>

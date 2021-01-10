@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import { useSocket } from "../socketHook/useSocket";
 import { LOBBY_EVENT, HOME_EVENT, REPLAY_EVENT } from "../socketHook/EventConstant";
 import UserStatus from "../userStatus/UserStatus";
+import { ReplayContext } from './useReplay';
 import {
   Container, Dialog, DialogActions, DialogContent, DialogContentText,
   DialogTitle, Grid, TextField, Typography, Link, Card, CardMedia, CardContent, CardActions, CssBaseline, Box
@@ -48,16 +49,19 @@ export default function History() {
   const { socket, isInitialized } = useSocket();
   const [list, setList] = useState([]);
   const history = useHistory();
-  
+  const { gameData, setGameData } = useContext(ReplayContext);
   useEffect(() => {
     if (socket) {
       socket.emit(REPLAY_EVENT.GET_LOBBIES, {});
 
-      socket.on(REPLAY_EVENT.GET_LOBBIES, ({ lobbies }) => {
+      socket.on(REPLAY_EVENT.GET_LOBBIES, ({ lobbies, boardSize }) => {
         console.log("Working!!");
         if (lobbies) {
           console.log("Rooms are ", lobbies);
           setList(lobbies);
+          setGameData({
+            boardSize: boardSize
+          });
         }
         else {
 
@@ -94,25 +98,42 @@ export default function History() {
 
                   <Typography align="center">
                     <Box fontWeight={700} >
-                      {value.user1 ? value.user1 : "      "}
+                      {value.user1 ? value.user1.username : "      "}
                     </Box>
                   </Typography>
                   <Typography align="center">
                     vs
                   </Typography>
                   <Typography align="center">
-                  <Box fontWeight={700} mb={2}>
-                      {value.user2 ? value.user2 : "      "}
+                    <Box fontWeight={700} mb={2}>
+                      {value.user2 ? value.user2.username : "      "}
                     </Box>
                   </Typography>
-
+                  <Typography align="center">
+                    <Box fontWeight={700} mb={2}>
+                      {(value.winner && value.winner !== 'Draw') ? `Winner: ${value.winner}` :
+                        (value.winner ? 'Draw' : null)}
+                    </Box>
+                  </Typography>
                   <Typography >
 
                     Date: {value.date.slice(0, 10)}
                   </Typography>
+
                 </CardContent>
                 <CardActions>
-                  <Button size="small" color="primary" href={"/replay/"+value.roomId}>
+                  <Button size="small" color="primary"
+                    onClick={() => {
+                      setGameData({
+                        history: value.history,
+                        player1: value.user1,
+                        player2: value.user2,
+                        winner: value.winner,
+                        boardSize: gameData.boardSize,
+                        userNext: value.user1.username
+                      });
+                      history.push(`/history/${value.roomId}`);
+                    }}>
                     View
                       </Button>
                 </CardActions>

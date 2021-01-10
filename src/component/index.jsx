@@ -9,6 +9,7 @@ import UserStatus from "./userStatus/UserStatus";
 import History from "./replay/History";
 import Replay from "./replay/Replay";
 
+
 export default function IndexComponent({ props }) {
   const history = useHistory();
 
