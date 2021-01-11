@@ -3,7 +3,7 @@ import {Redirect, Route, Switch, useHistory} from "react-router-dom";
 import Register from "./RegisterPage";
 import Login from "./LoginPage";
 import Home from "./HomePage";
-import {useAuth} from "./useAuth";
+import { useAuth } from "./useAuth";
 import Lobby from "./lobby/Lobby";
 import UserStatus from "./userStatus/UserStatus";
 import {useSocket} from "./socketHook/useSocket";
@@ -13,6 +13,8 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from '@material-ui/lab/Alert';
 import {Button} from "@material-ui/core";
 import NavigationBar from "./NavigationBar";
+import Replay from "./replay/Replay";
+import History from "./replay/History";
 
 
 function Alert(props) {
@@ -20,7 +22,7 @@ function Alert(props) {
 }
 
 
-export default function IndexComponent({props}) {
+export default function IndexComponent({ props }) {
   const history = useHistory();
 
   const [inviteUser, setInviteUser] = useState(null);
@@ -89,6 +91,16 @@ export default function IndexComponent({props}) {
         </Route>
         <Route path={"/l/:lobbyId"}>
           <Lobby/>
+        </Route>
+        <Route exact path="/history" >
+          {
+            userInfo ?
+              <History/> :
+              <Redirect to="/register" />
+          }
+        </Route>
+        <Route exact path={"/history/:lobbyId"}>
+          <Replay/>
         </Route>
       </Switch>
       {inviteUser && <Snackbar open={open} autoHideDuration={30000} onClose={handleClose}>

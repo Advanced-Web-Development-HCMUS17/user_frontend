@@ -89,8 +89,8 @@ export default function Lobby() {
 
   const copyBoardID = () => {
     navigator.clipboard.writeText(`gameBoard_${lobbyInfo.id}`);
+    alert('Room ID copied to clipboard successfully');
   }
-
   function handleReady() {
     if (socket) {
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import {useHistory} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -29,7 +30,7 @@ export default function NavigationBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
+  const history = useHistory();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -42,6 +43,11 @@ export default function NavigationBar() {
   const handleLogout = () => {
     setAnchorEl(null);
     logout();
+  }
+  const handleHistory = () => {
+    console.log('Working');
+    setAnchorEl(null);
+    history.push(`/history`);
   }
 
   return (
@@ -80,6 +86,7 @@ export default function NavigationBar() {
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleHistory}>History</MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </div>

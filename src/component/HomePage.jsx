@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {useHistory} from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import Button from "@material-ui/core/Button";
-import {useSocket} from "./socketHook/useSocket";
-import {LOBBY_EVENT} from "./socketHook/EventConstant";
+import { useSocket } from "./socketHook/useSocket";
+import { LOBBY_EVENT } from "./socketHook/EventConstant";
 import UserStatus from "./userStatus/UserStatus";
 import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -14,7 +14,7 @@ export default function Home({userInfo}) {
 
   const history = useHistory();
 
-  const {socket, isInitialized} = useSocket();
+  const { socket, isInitialized } = useSocket();
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [roomId, setRoomId] = useState('');
 
@@ -25,7 +25,7 @@ export default function Home({userInfo}) {
   }
 
   useEffect(() => {
-    socket.on(LOBBY_EVENT.CREATE_LOBBY, ({roomId, player}) => {
+    socket.on(LOBBY_EVENT.CREATE_LOBBY, ({ roomId, player }) => {
       history.push(`/l/${roomId}`);
     })
   }, [isInitialized]);
@@ -70,26 +70,26 @@ export default function Home({userInfo}) {
           <DialogContentText>
             Please enter Room ID.
           </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="roomID"
-            label="Room ID"
-            type="text"
-            fullWidth
-            variant='outlined'
-            onChange={handleTextChange}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
+            <TextField
+              autoFocus
+              margin="dense"
+              id="roomID"
+              label="Room ID"
+              type="text"
+              fullWidth
+              variant='outlined'
+              onChange={handleTextChange}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
           </Button>
-          <Button onClick={handleJoin} color="primary">
-            Join
+            <Button onClick={handleJoin} color="primary">
+              Join
           </Button>
-        </DialogActions>
-      </Dialog>
+          </DialogActions>
+        </Dialog>
     </div>
   );
 }
