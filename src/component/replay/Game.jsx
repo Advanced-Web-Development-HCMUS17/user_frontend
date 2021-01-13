@@ -1,11 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useSocket } from "../socketHook/useSocket";
+import React, { useState, useEffect } from 'react';
 import gameServices from '../../service/game-service.js';
 import { Button, Grid, makeStyles } from '@material-ui/core';
 import '../game/index.css';
-import { LOBBY_EVENT, GAME_EVENT } from '../socketHook/EventConstant';
 import Board from '../game/Board';
-import { ReplayContext } from './useReplay';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 const useStyles = makeStyles((theme) => ({
@@ -18,22 +15,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function Game() {
-    const { gameData, setGameData } = useContext(ReplayContext);
+function Game(props) {
+    const classes = makeStyles(useStyles);
     const [index, setIndex] = useState(-1);
     const [component, setComponent] = useState();
-    let status = "Next player: " + gameData.userNext;
-    const setData = () => {
-        setGameData({
-            history: gameData.history,
-            player1: gameData.player1,
-            player2: gameData.player2,
-            winner: gameData.winner,
-            boardSize: gameData.boardSize,
-            userNext: gameData.userNext === gameData.player1.username ? gameData.player2.username : gameData.player1.username
-        });
-    }
-    const setContent = (history, winChain, boardSize, status) => {
+    const [userNext, setUserNext] = useState(props.gameData.user1.username);
+    let status = "Next user: " + userNext;
+
+    const setContent = (history, winChain, boardSize, status, move) => {
         setComponent(
 
             <div className="game">
@@ -44,8 +33,11 @@ function Game() {
                         isWin={winChain}
                         onClick={(i) => handleClick(i)}
                         row={boardSize}
+                        move={move}
                     />
+
                 </div>
+
                 <div className="game-info">
                     <div>{status}</div>
                 </div>
@@ -59,52 +51,57 @@ function Game() {
     }
 
     const handleLeft = () => {
-        const history = gameData.history;
+        const history = props.gameData.history;
+        console.log('History: ', history);
         if (index >= 0) {
 
             const newHistory = history.slice(0, index);
-            setData();
-            status = "Next player: " + gameData.userNext;
+            //setData();
+            status = "Next user: " + userNext;
             setIndex(index - 1);
-            setContent(newHistory, null, gameData.boardSize, status);
+            setUserNext(userNext ===
+                props.gameData.user1.username ? props.gameData.user2.username : props.gameData.user1.username);
+            setContent(newHistory, null, props.boardSize, status, newHistory[newHistory.length - 1]);
         }
         else return;
     }
 
     const handleRight = () => {
-        if (index < gameData.history.length - 1) {
-            const history = gameData.history;
+        if (index < props.gameData.history.length - 1) {
+            const history = props.gameData.history;
 
             const newHistory = history.slice(0, index + 2);
             const winSquares = gameServices.calculateWinner(newHistory, newHistory[newHistory.length - 1],
-                gameData.boardSize);
+                props.boardSize);
 
             if (winSquares) {
-                status = "Winner: " + (gameData.userNext ===
-                    gameData.player1.username ? gameData.player2.username : gameData.player1.username);
+                status = "Winner: " + (userNext ===
+                    props.gameData.user1.username ? props.gameData.user2.username : props.gameData.user1.username);
             }
             else {
 
-                status = "Next player: " + gameData.userNext;
+                status = "Next user: " + userNext;
             }
             setIndex(index + 1);
-            setData();
-            setContent(newHistory, winSquares, gameData.boardSize, status);
+            setUserNext(userNext ===
+                props.gameData.user1.username ? props.gameData.user2.username : props.gameData.user1.username);
+            setContent(newHistory, winSquares, props.boardSize, status, newHistory[newHistory.length - 1]);
         }
         else return;
     }
 
 
     useEffect(() => {
-        setContent([], null, gameData.boardSize, status);
-        setData();
+        setContent([], null, props.boardSize, status, -1);
+        setUserNext(userNext ===
+            props.gameData.user1.username ? props.gameData.user2.username : props.gameData.user1.username);
     }, [])
 
     return (
 
         <Grid item md={12}>
             {component}
-            <Grid m>
+            <Grid md = {5} direction='column' align='center'>
                 <Button onClick={() => {
                     handleLeft();
                 }}>

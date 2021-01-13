@@ -99,7 +99,7 @@ export default function IndexComponent({ props }) {
               <Redirect to="/register" />
           }
         </Route>
-        <Route exact path={"/history/:lobbyId"}>
+        <Route exact path={"/history/:gameId"}>
           <Replay/>
         </Route>
       </Switch>

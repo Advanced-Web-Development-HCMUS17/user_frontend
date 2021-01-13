@@ -25,7 +25,7 @@ function Game() {
     // let winner, winChainProps = null;
 
 
-    function setContent(history, winChain, boardSize, status) {
+    function setContent(history, winChain, boardSize, status, move) {
         setComponent(
 
             <div className="game">
@@ -36,6 +36,7 @@ function Game() {
                         isWin={winChain}
                         onClick={(i) => handleClick(i)}
                         row={boardSize}
+                        move={move}
                     />
                 </div>
                 <div className="game-info">
@@ -57,9 +58,9 @@ function Game() {
         if (socket) {
 
             socket.on(GAME_EVENT.GAME_START, ({ userFirst, userSecond, boardSize }) => {
-                const status = "Next player: " + userFirst.username;
+                const status = "Next player: " + userFirst;
 
-                setContent([], null, boardSize, status);
+                setContent([], null, boardSize, status, -1);
                 console.log("Game start!!!");
             });
 
@@ -67,15 +68,15 @@ function Game() {
 
             socket.on(GAME_EVENT.SEND_MOVE, ({ newHistory, userTurn, boardSize }) => {
                 const status = "Next player: " + userTurn;
-                setContent(newHistory, null, boardSize, status);
+                setContent(newHistory, null, boardSize, status, newHistory[newHistory.length - 1]);
                 console.log('New history: ', newHistory);
 
 
             });
 
             socket.on(GAME_EVENT.GAME_END, ({ newHistory, userWin, winChain, boardSize }) => {
-                const status = "Winner: " + userWin;
-                setContent(newHistory, winChain, boardSize, status);
+                const status = userWin !== "Draw" ? "Winner: " + userWin : "GAME DRAW";
+                setContent(newHistory, winChain, boardSize, status, newHistory[newHistory.length - 1]);
                 console.log("Winner: ", userWin);
 
 

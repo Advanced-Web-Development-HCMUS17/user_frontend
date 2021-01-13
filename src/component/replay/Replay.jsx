@@ -1,10 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState} from 'react';
+import {useParams} from 'react-router';
+import CircularProgress from "@material-ui/core/CircularProgress";
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import ChatLog from "./chat/ChatLog";
 import { makeStyles } from '@material-ui/core/styles';
-import { useSocket } from "../socketHook/useSocket";
-import { LOBBY_EVENT, HOME_EVENT, REPLAY_EVENT } from "../socketHook/EventConstant";
-import { ReplayContext } from './useReplay';
+import {fetchGameData} from '../../service/api';
 import PlayerInfo from "../lobby/PlayerInfo";
 import Game from './Game';
+import {useAuth} from '../useAuth';
 
 import {Container, Paper, Grid, TextField, Typography, Link, Card,
   CardMedia, CardContent, CardActions, CssBaseline, Button, Box
@@ -44,84 +47,48 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Replay() {
-  const classes = useStyles();
+  const boardSize = 20;
+  const { gameId } = useParams();
 
-  const { gameData, setGameData } = useContext(ReplayContext);
+  const [gameInfo, setGameInfo] = useState(null);
+  const { token } = useAuth();
 
-  //TODO: same with game info in admin subsystem
+  async function fetchData() {
+    let data = await fetchGameData(token, gameId);
+    let dateFormat = new Date(data.date);
+    data.date = dateFormat.toLocaleString("en-US");
+    setGameInfo(data);
+  }
 
-  return (
-    <Grid container direction='column' spacing={1}>
-      <Grid item md={12}>
-        <Grid container direction='row' spacing={1}>
-        <Grid item md={3}>
-            <Grid container direction='row' spacing={2}>
-              <Grid item md={12}>
-                <Paper className={classes.title} elevation={1} square>
-                  <Box p={0.5}>LOBBY</Box>
-                </Paper>
-              </Grid>
-              <Grid item md={12}>
+  useEffect(() => {
+    fetchData();
+  }
+    , [gameId]);
+  return (gameInfo ? <>
+    <Grid item><AccessTimeIcon /> {gameInfo.date}</Grid>
+    <Grid container>
+      <Grid item md={9} >
+        <Grid md={5} align='center' justify='center' spacing = {2}>
+          <Box fontWeight={700} fontSize='20px'>
 
-                <Grid container direction='row' spacing={1}>
-                  <Grid item md={12}>
-                    <Paper variant={"elevation"}>
-                      <Typography variant={"h6"}>Player 1</Typography>
+            Game history
 
-                      <PlayerInfo name={gameData.player1.username}
-                        email={gameData.player1.email}
-                        rating={gameData.player1.rating} />
-
-                    </Paper>
-                  </Grid>
-                  <Grid item md={12}>
-                    <Paper>
-                      <Typography variant={"h6"}>Player 2</Typography>
-
-                      <PlayerInfo name={gameData.player2.username}
-                        email={gameData.player2.email}
-                        rating={gameData.player2.rating} />
-
-                    </Paper>
-                  </Grid>
-                </Grid>
-
-
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item md={9}>
-            <Grid container direction='column' spacing={1}>
-              <Grid item md={12}>
-                <Grid container direction='row' spacing={1}>
-                  <Grid item md={10}>
-                    <Paper className={classes.title} elevation={1} square>
-                      <Box p={0.5}>GAME</Box>
-                    </Paper>
-                  </Grid>
-
-                </Grid>
-              </Grid>
-              <Grid item md={12}>
-                <Game/>
-              </Grid>
-            </Grid>
-          </Grid>
-          {/* <Grid item md={2}>
-            <Grid container direction='row' spacing={2}>
-              <Grid item md={12}>
-                <Paper className={classes.title} elevation={1} square>
-                  <Box p={0.5}>CHAT</Box>
-                </Paper>
-              </Grid>
-              <Grid item md={12}>
-                <ChatLayout user={userInfo} />
-              </Grid>
-            </Grid>
-          </Grid> */}
-
+          </Box>
         </Grid>
+        <Game gameData={gameInfo} boardSize={boardSize} />
+      </Grid>
+      <Grid item md={3}>
+        <Box py={2}>
+          Player 1
+            <PlayerInfo name={gameInfo.user1.username} id={gameInfo.user1._id} email={gameInfo.user1.email} rating={gameInfo.user1.rating} />
+        </Box>
+        <Box py={2}>Player 2
+            <PlayerInfo name={gameInfo.user2.username} id={gameInfo.user1._id} email={gameInfo.user2.email} rating={gameInfo.user2.rating} /></Box>
       </Grid>
     </Grid>
-  );
+    <Grid>
+      <ChatLog chats={gameInfo.chat ? gameInfo.chat : []} />
+    </Grid>
+  </> : <CircularProgress color="secondary" />
+  )
 }

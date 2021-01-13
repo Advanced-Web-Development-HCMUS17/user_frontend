@@ -1,11 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {useHistory} from 'react-router';
-import {makeStyles} from '@material-ui/core/styles';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
-import {useSocket} from "../socketHook/useSocket";
-import {LOBBY_EVENT, HOME_EVENT, REPLAY_EVENT} from "../socketHook/EventConstant";
-import UserStatus from "../userStatus/UserStatus";
-import {ReplayContext} from './useReplay';
+import { useAuth } from '../useAuth';
+import { fetchHistory } from '../../service/api';
+import Pagination from "@material-ui/lab/Pagination";
 import {
   Container, Dialog, DialogActions, DialogContent, DialogContentText,
   DialogTitle, Grid, TextField, Typography, Link, Card, CardMedia, CardContent, CardActions, CssBaseline, Box
@@ -46,18 +45,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function History() {
   const classes = useStyles();
-  const {socket, isInitialized} = useSocket();
+  const { token } = useAuth();
   const [list, setList] = useState([]);
   const history = useHistory();
-  const {gameData, setGameData} = useContext(ReplayContext);
+  const [page, setPage] = useState(1);
+  async function fetchData() {
+    const games = await fetchHistory(token, page);
+    console.log('Game la:', games);
+    setList(games);
+  }
+
   useEffect(() => {
-    //TODO: fetch api here
-  }, [isInitialized]);
+    fetchData();
+  }, [page]);
 
 
   return (
     <React.Fragment>
-      <CssBaseline/>
+      <CssBaseline />
       <div className={classes.heroContent}>
         <Container maxWidth="sm">
           <Typography component="h1" variant="h4" align="center" color="textPrimary" gutterBottom>
@@ -94,8 +99,8 @@ export default function History() {
                   </Typography>
                   <Typography align="center">
                     <Box fontWeight={700} mb={2}>
-                      {(value.winner && value.winner !== 'Draw') ? `Winner: ${value.winner}` :
-                        (value.winner ? 'Draw' : null)}
+                      {(value.winner && value.winner !== null) ? `Winner: ${value.winner}` :
+                        "Draw"}
                     </Box>
                   </Typography>
                   <Typography>
@@ -106,23 +111,21 @@ export default function History() {
                 </CardContent>
                 <CardActions>
                   <Button size="small" color="primary"
-                          onClick={() => {
-                            setGameData({
-                              history: value.history,
-                              player1: value.user1,
-                              player2: value.user2,
-                              winner: value.winner,
-                              boardSize: gameData.boardSize,
-                              userNext: value.user1.username
-                            });
-                            history.push(`/history/${value.roomId}`);
-                          }}>
+                    onClick={() => {
+                      history.push(`/history/${value._id}`);
+                    }}>
                     View
                   </Button>
                 </CardActions>
               </Card>
             </Grid>
           ))}
+
+        </Grid>
+        <Grid md={12} align="center" justify="center" direction="column">
+          <Pagination count={10} page={page} onChange={async (event, page) => {
+            setPage(page);
+          }} color="primary" />
         </Grid>
       </Container>
     </React.Fragment>

@@ -17,7 +17,7 @@ function Board(props) {
     function renderSquare(i, highlight) {
         const squares = gameServices.refactorArray(props.squares, props.row)
         return <Square value={squares[i]} highlight={highlight}
-            onClick={() => props.onClick(i)}></Square>;
+            onClick={() => props.onClick(i)} isMove={props.move === i ? true : false}></Square>;
     };
     const ROW = props.row;
     const board = [];
