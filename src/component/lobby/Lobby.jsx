@@ -11,7 +11,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Box from "@material-ui/core/Box";
 import Game from "../game/Game";
 import ChatLayout from "../chat";
-import { useAuth } from '../useAuth';
+import {useAuth} from '../useAuth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Lobby() {
-  const { socket, isInitialized } = useSocket();
-  const { lobbyId } = useParams();
+  const {socket, isInitialized} = useSocket();
+  const {lobbyId} = useParams();
   const classes = useStyles();
-  const { userInfo } = useAuth();
+  const {userInfo} = useAuth();
   const [lobbyInfo, setLobbyInfo] = useState({});
 
 
@@ -64,6 +64,7 @@ export default function Lobby() {
     navigator.clipboard.writeText(`gameBoard_${lobbyInfo.id}`);
     alert('Room ID copied to clipboard successfully');
   }
+
   function handleReady() {
     if (socket) {
 
@@ -91,8 +92,8 @@ export default function Lobby() {
                     <Grid container direction='row' justify='center' alignItems={'center'}>
                       <Grid item>
                         <Button onClick={copyBoardID} variant='contained'
-                          style={{ backgroundColor: `#009938`, color: `#ffffff` }}>Share</Button>
-                        <Button variant="contained" color="primary" onClick={() => handleReady()} >
+                                style={{backgroundColor: `#009938`, color: `#ffffff`}}>Share</Button>
+                        <Button variant="contained" color="primary" onClick={() => handleReady()}>
                           Ready
                         </Button>
                       </Grid>
@@ -133,7 +134,8 @@ export default function Lobby() {
                         {lobbyInfo.player1 ?
                           <PlayerInfo name={lobbyInfo.player1.username}
                                       email={lobbyInfo.player1.email}
-                                      rating={lobbyInfo.player1.rating}/>
+                                      rating={lobbyInfo.player1.rating}
+                                      avatar={lobbyInfo.player1.avatar}/>
                           :
                           <div className={classes.root}>
                             <LinearProgress color="secondary"/>
@@ -147,7 +149,8 @@ export default function Lobby() {
                         {lobbyInfo.player2 ?
                           <PlayerInfo name={lobbyInfo.player2.username}
                                       email={lobbyInfo.player2.email}
-                                      rating={lobbyInfo.player2.rating}/>
+                                      rating={lobbyInfo.player2.rating}
+                                      avatar={lobbyInfo.player2.avatar}/>
                           :
                           <div className={classes.root}>
                             <LinearProgress color="secondary"/>

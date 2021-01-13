@@ -42,13 +42,13 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function PlayerInfo({name, email, rating}) {
+export default function PlayerInfo({name, email, rating, avatar}) {
   const classes = useStyles();
   const theme = useTheme();
 
   return (
     <Card className={classes.root}>
-      <Avatar alt={name} src={"https://i.pravatar.cc/150"} className={classes.large}/>
+      <Avatar alt={name} src={avatar ? avatar : "https://i.pravatar.cc/150"} className={classes.large}/>
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
