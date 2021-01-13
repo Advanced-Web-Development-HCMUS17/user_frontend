@@ -1,4 +1,5 @@
 import React from 'react';
+import {useHistory} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,6 +10,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import {useAuth} from "./useAuth";
+import Box from "@material-ui/core/Box";
+import {NavLink} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    color: "inherit"
   },
 }));
 
@@ -26,7 +30,7 @@ export default function NavigationBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
+  const history = useHistory();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -36,10 +40,14 @@ export default function NavigationBar() {
     setAnchorEl(null);
   };
   const {logout} = useAuth();
-  const handleLogout = ()=>
-  {
+  const handleLogout = () => {
     setAnchorEl(null);
     logout();
+  }
+  const handleHistory = () => {
+    console.log('Working');
+    setAnchorEl(null);
+    history.push(`/history`);
   }
 
   return (
@@ -50,7 +58,7 @@ export default function NavigationBar() {
             <MenuIcon/>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Caro đỉnh cấp
+            <NavLink to={"/"} light>Caro đỉnh cấp</NavLink>
           </Typography>
           <div>
             <IconButton
@@ -78,6 +86,7 @@ export default function NavigationBar() {
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleHistory}>History</MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </div>

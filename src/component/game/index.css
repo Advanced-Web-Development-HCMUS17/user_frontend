@@ -1,5 +1,5 @@
 ol, ul {
-    padding-left: 30px;
+    padding-left: 28px;
   }
   
   .board-row:after {
@@ -15,15 +15,15 @@ ol, ul {
   .square {
     border: 1px solid #999;
     float: left;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
-    line-height: 24px;
-    height: 24px;
+    line-height: 28px;
+    height: 28px;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
     text-align: center;
-    width: 24px;
+    width: 28px;
   }
   
   .square:focus {
@@ -61,8 +61,8 @@ ol, ul {
     position: absolute;
     cursor: pointer;
     top: 0;
-    left: 30px;
-    right: -30px;
+    left: 28px;
+    right: -28px;
     bottom: 0;
     background-color: #ccc;
     -webkit-transition: .4s;
