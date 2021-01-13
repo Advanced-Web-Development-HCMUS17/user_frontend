@@ -19,23 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8751b39c-aee8-427a-98bd-860b6f777286" name="Default Changelist" comment="+ Invite player">
-      <change afterPath="$PROJECT_DIR$/src/component/lobbyChoose/LobbyChoose.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/replay/Game.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/replay/History.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/replay/Replay.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/replay/useReplay.jsx" afterDir="false" />
+    <list default="true" id="8751b39c-aee8-427a-98bd-860b6f777286" name="Default Changelist" comment="merge with auth branch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/HomePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/NavigationBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/NavigationBar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/game/Game.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/game/Game.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/game/Square.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/game/Square.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/game/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/game/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/lobby/Lobby.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/lobby/Lobby.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/socketHook/EventConstant.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/socketHook/EventConstant.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/game-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/game-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/replay/Replay.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/replay/Replay.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609474404006</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="merge with auth branch">
+      <created>1610540439240</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1610540439240</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,7 +202,8 @@
     <MESSAGE value="- useSocket, + logout button" />
     <MESSAGE value="! useSocket.jsx +createLobby, joinLobby by login and join lobby url" />
     <MESSAGE value="+ Invite player" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ Invite player" />
+    <MESSAGE value="merge with auth branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge with auth branch" />
   </component>
   <component name="WindowStateProjectService">
     <state x="582" y="182" key="#Inspections" timestamp="1607355750326">
@@ -329,9 +326,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="532" y="237" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607441275956" />
-    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1610287506709">
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1610540844154">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610287506709" />
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610540844154" />
   </component>
 </project>

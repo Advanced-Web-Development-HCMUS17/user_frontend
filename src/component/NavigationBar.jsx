@@ -10,6 +10,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import {useAuth} from "./useAuth";
+import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +31,7 @@ export default function NavigationBar() {
   const {logout} = useAuth();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const {userInfo} = useAuth();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -58,7 +60,7 @@ export default function NavigationBar() {
             <MenuIcon/>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            <NavLink to={"/"} light>Caro đỉnh cấp</NavLink>
+            <NavLink to={"/"} style={{textDecoration: "none", color: "#FFFFFF"}} light>Caro đỉnh cấp</NavLink>
           </Typography>
           <div>
             <IconButton
@@ -68,7 +70,7 @@ export default function NavigationBar() {
               onClick={handleMenu}
               color="inherit"
             >
-              <AccountCircle/>
+              <Avatar src={userInfo ? userInfo.avatar : null} alt={userInfo ? userInfo.username : "Anonymous"}/>
             </IconButton>
             <Menu
               id="menu-appbar"

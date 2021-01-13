@@ -66,7 +66,7 @@ export default function Home({userInfo}) {
     <>
       <NavigationBar/>
       <Grid container alignItems={"flex-end"} direction={"column"}><Box p={2}>
-        <Grid container>
+        <Grid container spacing={2}>
           <Grid item>
             <Button variant="contained" startIcon={<LibraryAdd/>} onClick={createBoard}
                     className={classes.btnCreate}>
