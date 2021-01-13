@@ -4,9 +4,12 @@ import Button from "@material-ui/core/Button";
 import {useSocket} from "./socketHook/useSocket";
 import {LOBBY_EVENT} from "./socketHook/EventConstant";
 import UserStatus from "./userStatus/UserStatus";
+import {Grid} from "@material-ui/core";
+import Box from "@material-ui/core/Box";
+import Leaderboard from "./leaderboard/Leaderboard";
+import LobbyList from "./LobbyList/LobbyList";
 import NavigationBar from "./NavigationBar";
 import FormDialog from "./dialog/FormDialog";
-import {Grid} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import {ExitToApp, FlashOnRounded, LibraryAdd} from "@material-ui/icons";
 
@@ -29,11 +32,13 @@ const useStyle = makeStyles((theme) => ({
   }
 }));
 
-export default function Home() {
+export default function Home({userInfo}) {
+
+  const history = useHistory();
+
   const {socket, isInitialized} = useSocket();
   const [open, setOpen] = useState(false);
   const [roomId, setRoomId] = useState('');
-  const history = useHistory();
   const classes = useStyle();
 
   function createBoard() {
@@ -43,7 +48,7 @@ export default function Home() {
   }
 
   function findMatch() {
-    if(isInitialized){
+    if (isInitialized) {
       socket.emit()
     }
   }
@@ -57,8 +62,8 @@ export default function Home() {
   return (
     <>
       <NavigationBar/>
-      <Grid container direction="row" spacing={5} className={classes.root}>
-        <Grid container direction="column" item xs={8} spacing={2} className={classes.btnGroup}>
+      <Grid container alignItems={"flex-end"} direction={"column"}><Box p={2}>
+        <Grid container>
           <Grid item>
             <Button variant="contained" startIcon={<LibraryAdd/>} onClick={createBoard}
                     className={classes.btnCreate}>
@@ -78,9 +83,11 @@ export default function Home() {
             </Button>
           </Grid>
         </Grid>
-        <Grid item xs>
-          <UserStatus/>
-        </Grid>
+      </Box></Grid>
+      <Grid container alignItems={"flex-start"} direction={"row"}>
+        <Grid item md={4}><UserStatus/></Grid>
+        <Grid item md={4}><LobbyList/></Grid>
+        <Grid item md={4}><Leaderboard/></Grid>
       </Grid>
       <FormDialog
         open={open}

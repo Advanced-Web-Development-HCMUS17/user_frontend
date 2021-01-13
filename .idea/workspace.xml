@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -22,15 +19,23 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c2eed82-f7ee-4052-b421-b7c8c3a5c232" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/ProfilePage.jsx" afterDir="false" />
+    <list default="true" id="8751b39c-aee8-427a-98bd-860b6f777286" name="Default Changelist" comment="+ Invite player">
+      <change afterPath="$PROJECT_DIR$/src/component/lobbyChoose/LobbyChoose.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/replay/Game.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/replay/History.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/replay/Replay.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/replay/useReplay.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/HomePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/LoginPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/NavigationBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/NavigationBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/game/Game.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/game/Game.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/game/Square.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/game/Square.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/game/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/game/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/lobby/Lobby.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/lobby/Lobby.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/socketHook/EventConstant.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/socketHook/EventConstant.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/account-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/account-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/game-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/game-service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,14 +50,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
-  </component>
   <component name="ProjectId" id="1lEHoARY5heVOvg7y38LMUrOHRT" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -65,44 +62,25 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../user_backend" />
     <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Documents\React Projects\DACK-PTUDWNC\user_frontend\src\component\resetPassword" />
-      <recent name="D:\Documents\React Projects\DACK-PTUDWNC\user_frontend\src\component" />
-      <recent name="D:\Documents\React Projects\DACK-PTUDWNC\user_frontend\src\component\dialog" />
+      <recent name="D:\Learning\4_1_Advanced_web_development\DACK\user_frontend\src\component\LobbyList" />
       <recent name="D:\Learning\4_1_Advanced_web_development\DACK\user_frontend\src\component" />
       <recent name="D:\Learning\4_1_Advanced_web_development\DACK\user_frontend\src\component\socketHook" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
-      <method v="2" />
-    </configuration>
-    <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs>
-        <env name="REACT_APP_SOCKET_URL" value="wss://carodinhcap.herokuapp.com" />
-        <env name="REACT_APP_API_URL" value="https://carodinhcap.herokuapp.com" />
-      </envs>
       <method v="2" />
     </configuration>
     <configuration name="npm start" type="js.build_tools.npm">
@@ -113,25 +91,21 @@
       </scripts>
       <node-interpreter value="project" />
       <envs>
+        <env name="REACT_APP_API_URL" value="http://localhost:3000" />
         <env name="REACT_APP_SOCKET_URL" value="ws://localhost:3000" />
         <env name="PORT" value="3001" />
-        <env name="REACT_APP_API_URL" value="http://localhost:3000" />
       </envs>
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="JavaScript Debug.Debug Application" />
-      <item itemvalue="npm.build" />
       <item itemvalue="npm.npm start" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2c2eed82-f7ee-4052-b421-b7c8c3a5c232" name="Default Changelist" comment="" />
+      <changelist id="8751b39c-aee8-427a-98bd-860b6f777286" name="Default Changelist" comment="" />
       <created>1607155502839</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -146,15 +120,24 @@
       <workItem from="1607706081203" duration="1581000" />
       <workItem from="1607707699960" duration="2039000" />
       <workItem from="1607738776156" duration="81000" />
-      <workItem from="1607758755006" duration="9434000" />
-      <workItem from="1608703048174" duration="184000" />
-      <workItem from="1608703427670" duration="18561000" />
-      <workItem from="1609825000350" duration="2690000" />
-      <workItem from="1609889377882" duration="47605000" />
-      <workItem from="1610008101664" duration="32324000" />
-      <workItem from="1610070872049" duration="3846000" />
-      <workItem from="1610082280935" duration="438000" />
-      <workItem from="1610118362647" duration="49918000" />
+      <workItem from="1607758755006" duration="9505000" />
+      <workItem from="1607793035179" duration="6000" />
+      <workItem from="1607873367261" duration="38000" />
+      <workItem from="1608086307144" duration="939000" />
+      <workItem from="1608177803781" duration="595000" />
+      <workItem from="1608180146280" duration="3597000" />
+      <workItem from="1608351093362" duration="1202000" />
+      <workItem from="1608448786618" duration="170000" />
+      <workItem from="1608563934738" duration="23000" />
+      <workItem from="1608650112500" duration="2843000" />
+      <workItem from="1608738547507" duration="248000" />
+      <workItem from="1609383857352" duration="10340000" />
+      <workItem from="1609476367627" duration="4497000" />
+      <workItem from="1609987506185" duration="675000" />
+      <workItem from="1610116691169" duration="1760000" />
+      <workItem from="1610160807313" duration="1342000" />
+      <workItem from="1610283586851" duration="10797000" />
+      <workItem from="1610376792673" duration="632000" />
     </task>
     <task id="LOCAL-00001" summary="+ init project">
       <created>1607155722102</created>
@@ -184,35 +167,21 @@
       <option name="project" value="LOCAL" />
       <updated>1607482274758</updated>
     </task>
-    <task id="LOCAL-00005" summary="+Chat component, !Lobby, !EventContant&#10;&#10;Add chat function in Game Room&#10;Use useAuth to get curent user in Lobby.jsx&#10;Add some constant for chat socket in EventConstant.jsx">
-      <created>1608113845356</created>
+    <task id="LOCAL-00005" summary="! useSocket.jsx +createLobby, joinLobby by login and join lobby url">
+      <created>1607792969883</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1608113845356</updated>
+      <updated>1607792969883</updated>
     </task>
-    <task id="LOCAL-00006" summary="+ Passport FB Google login&#10;&#10;fb.acc.example: FB test account">
-      <created>1609659831642</created>
+    <task id="LOCAL-00006" summary="+ Invite player">
+      <created>1609474404006</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1609659831642</updated>
+      <updated>1609474404006</updated>
     </task>
-    <task id="LOCAL-00007" summary="+Active account, password reset by email&#10;&#10;Redesign Sign in, Sign up page&#10;Prevent showing login screen when back to home page">
-      <created>1610048099627</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1610048099627</updated>
-    </task>
-    <task id="LOCAL-00008" summary="!Register, useAuth: handle BANNED user, prevent fetchUserInfo with undefined token">
-      <created>1610165389625</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1610165389625</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,19 +192,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/feature/create-join-room" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -247,12 +204,134 @@
     <MESSAGE value="+ init project" />
     <MESSAGE value="+ use socket, + useUserStatus, +set up socket.io" />
     <MESSAGE value="- useSocket, + logout button" />
-    <MESSAGE value="+Chat Component, !Lobby, !Event Constrant&#10;&#10;Add chat function int Play Game Room&#10;Use useAuth to get current user in Looby.js&#10;Add some Constraint for Chat socket int EventContant" />
-    <MESSAGE value="+Chat component, !Lobby, !EventContant&#10;&#10;Add chat function in Game Room&#10;Use useAuth to get curent user in Lobby.jsx&#10;Add some constant for chat socket in EventConstant.jsx" />
-    <MESSAGE value="+Add UI for share and join Game Room, !HomePage, !Lobby, !Chat component&#10;&#10;Add UI for share and join Game Room.&#10;Styled UI for Chat Component" />
-    <MESSAGE value="+ Passport FB Google login&#10;&#10;fb.acc.example: FB test account" />
-    <MESSAGE value="+Active account, password reset by email&#10;&#10;Redesign Sign in, Sign up page&#10;Prevent showing login screen when back to home page" />
-    <MESSAGE value="!Register, useAuth: handle BANNED user, prevent fetchUserInfo with undefined token" />
-    <option name="LAST_COMMIT_MESSAGE" value="!Register, useAuth: handle BANNED user, prevent fetchUserInfo with undefined token" />
+    <MESSAGE value="! useSocket.jsx +createLobby, joinLobby by login and join lobby url" />
+    <MESSAGE value="+ Invite player" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ Invite player" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="582" y="182" key="#Inspections" timestamp="1607355750326">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="582" y="182" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1607355750326" />
+    <state x="737" y="259" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1610376873105">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="737" y="259" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610376873105" />
+    <state x="664" y="303" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609395522647">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="664" y="303" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1609395522647" />
+    <state x="624" y="206" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607451622942">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="624" y="206" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607451622942" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1608738795972">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608738795972" />
+    <state x="1132" y="312" width="542" height="602" key="EnvironmentVariablesDialog" timestamp="1610376872268">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1132" y="312" width="542" height="602" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610376872268" />
+    <state width="1893" height="160" key="GridCell.Tab.0.bottom" timestamp="1610295199954">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="160" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1610295199954" />
+    <state width="1893" height="160" key="GridCell.Tab.0.center" timestamp="1610295199953">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="160" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1610295199953" />
+    <state width="1893" height="160" key="GridCell.Tab.0.left" timestamp="1610295199953">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="160" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1610295199953" />
+    <state width="1893" height="160" key="GridCell.Tab.0.right" timestamp="1610295199953">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="160" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1610295199953" />
+    <state width="1893" height="331" key="GridCell.Tab.1.bottom" timestamp="1607275026757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="331" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
+    <state width="1893" height="331" key="GridCell.Tab.1.center" timestamp="1607275026756">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="331" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026756" />
+    <state width="1893" height="331" key="GridCell.Tab.1.left" timestamp="1607275026756">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="331" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026756" />
+    <state width="1893" height="331" key="GridCell.Tab.1.right" timestamp="1607275026756">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="331" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026756" />
+    <state width="1893" height="331" key="GridCell.Tab.2.bottom" timestamp="1607275026757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="331" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
+    <state width="1893" height="331" key="GridCell.Tab.2.center" timestamp="1607275026757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="331" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
+    <state width="1893" height="331" key="GridCell.Tab.2.left" timestamp="1607275026757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="331" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
+    <state width="1893" height="331" key="GridCell.Tab.2.right" timestamp="1607275026757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="331" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
+    <state width="1893" height="331" key="GridCell.Tab.3.bottom" timestamp="1607275026757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="331" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
+    <state width="1893" height="331" key="GridCell.Tab.3.center" timestamp="1607275026757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="331" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
+    <state width="1893" height="331" key="GridCell.Tab.3.left" timestamp="1607275026757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="331" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
+    <state width="1893" height="331" key="GridCell.Tab.3.right" timestamp="1607275026757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1893" height="331" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607275026757" />
+    <state x="184" y="86" key="MergeDialog" timestamp="1610377099475">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610377099475" />
+    <state x="513" y="223" key="MultipleFileMergeDialog" timestamp="1610377099485">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="513" y="223" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610377099485" />
+    <state x="452" y="188" key="Vcs.Push.Dialog.v2" timestamp="1610294652989">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="452" y="188" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610294652989" />
+    <state x="737" y="415" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610161845199">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="737" y="415" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610161845199" />
+    <state x="605" y="188" width="710" height="664" key="find.popup" timestamp="1610292492660">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="605" y="188" width="710" height="664" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610292492660" />
+    <state x="666" y="163" key="git4idea.branch.GitSmartOperationDialog" timestamp="1610161899508">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="666" y="163" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610161899508" />
+    <state x="514" y="179" width="875" height="663" key="recent.locations.popup" timestamp="1607441263834">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="514" y="179" width="875" height="663" key="recent.locations.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607441263834" />
+    <state x="532" y="237" key="run.anything.popup" timestamp="1607441275956">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="532" y="237" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607441275956" />
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1610287506709">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610287506709" />
   </component>
 </project>

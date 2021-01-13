@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink, useHistory} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,7 +10,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import {useAuth} from "./useAuth";
-import {useHistory} from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    color: "inherit"
   },
 }));
 
@@ -43,6 +44,11 @@ export default function NavigationBar() {
     setAnchorEl(null);
     logout();
   }
+  const handleHistory = () => {
+    console.log('Working');
+    setAnchorEl(null);
+    history.push(`/history`);
+  }
 
   return (
     <div className={classes.root}>
@@ -51,8 +57,8 @@ export default function NavigationBar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon/>
           </IconButton>
-          <Typography variant="h6" className={classes.title} onClick={() => history.push('/')}>
-            Caro đỉnh cấp
+          <Typography variant="h6" className={classes.title}>
+            <NavLink to={"/"} light>Caro đỉnh cấp</NavLink>
           </Typography>
           <div>
             <IconButton
@@ -77,9 +83,10 @@ export default function NavigationBar() {
                 horizontal: 'right',
               }}
               open={open}
-              onClose={handleViewProfile}
+              onClose={() => setAnchorEl(null)}
             >
               <MenuItem onClick={handleViewProfile}>Profile</MenuItem>
+              <MenuItem onClick={handleHistory}>History</MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </div>

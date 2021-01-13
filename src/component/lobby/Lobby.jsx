@@ -13,6 +13,12 @@ import Game from "../game/Game";
 import ChatLayout from "../chat";
 import { useAuth } from '../useAuth';
 import NavigationBar from "../NavigationBar";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
+import Dialog from "@material-ui/core/Dialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,12 +37,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Lobby() {
-  const { socket, isInitialized } = useSocket();
-  const { lobbyId } = useParams();
+  const {socket, isInitialized} = useSocket();
+  const {lobbyId} = useParams();
   const classes = useStyles();
-  const { userInfo } = useAuth();
+  const {userInfo} = useAuth();
   const [lobbyInfo, setLobbyInfo] = useState({});
 
+  const [inviteUser, setInviteUser] = useState('');
 
   useEffect(() => {
     if (socket) {
@@ -62,7 +69,27 @@ export default function Lobby() {
       });
 
     }
+    return () => {
+      if (socket) {
+        socket.emit(LOBBY_EVENT.LEAVE_LOBBY);
+      }
+    }
   }, [isInitialized]);
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleInvite = () => {
+    socket.emit(LOBBY_EVENT.INVITE, {email: inviteUser});
+    handleClose();
+  }
 
   const copyBoardID = () => {
     navigator.clipboard.writeText(`gameBoard_${lobbyInfo.id}`);
@@ -80,27 +107,28 @@ export default function Lobby() {
     <NavigationBar/>
     <Grid container direction='column' spacing={1} className={classes.rootContainer}>
       <Grid item md={12}>
-        <p>{JSON.stringify(lobbyInfo)}</p>
-      </Grid>
-      <Grid item md={12}>
         <Grid container direction='row' spacing={1}>
-          <Grid item md={5}>
+          <Grid item md={9}>
             <Grid container direction='column' spacing={1}>
               <Grid item md={12}>
                 <Grid container direction='row' spacing={1}>
-                  <Grid item md={10}>
-                    <Paper className={classes.title} elevation={1} square>
-                      <Box p={0.5}>GAME</Box>
-                    </Paper>
-                  </Grid>
-                  <Grid item md={2}>
+                  <Grid item>
                     <Grid container direction='row' justify='center' alignItems={'center'}>
                       <Grid item>
-                        <Button onClick={copyBoardID} variant='contained'
-                          style={{ backgroundColor: `#009938`, color: `#ffffff` }}>Share</Button>
-                        <Button variant="contained" color="primary" onClick={() => handleReady()} >
+                        <Box mx={2} my={1} component={"span"}>
+                          <Button onClick={copyBoardID} variant='contained'
+                                  style={{backgroundColor: `#009938`, color: `#ffffff`}}>
+                            Share
+                          </Button></Box>
+                        <Box mx={2} my={1} component={"span"}><Button variant="contained" color="primary"
+                                                                      onClick={() => handleReady()}>
                           Ready
+                        </Button></Box>
+                        <Box mx={2} my={1} component={"span"}><Button variant="contained" color="secondary"
+                                                                      onClick={() => handleClickOpen()}>
+                          Invite
                         </Button>
+                        </Box>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -111,25 +139,9 @@ export default function Lobby() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item md={4}>
-            <Grid container direction='row' spacing={2}>
-              <Grid item md={12}>
-                <Paper className={classes.title} elevation={1} square>
-                  <Box p={0.5}>CHAT</Box>
-                </Paper>
-              </Grid>
-              <Grid item md={12}>
-                <ChatLayout user={userInfo}/>
-              </Grid>
-            </Grid>
-          </Grid>
+
           <Grid item md={3}>
             <Grid container direction='row' spacing={2}>
-              <Grid item md={12}>
-                <Paper className={classes.title} elevation={1} square>
-                  <Box p={0.5}>LOBBY</Box>
-                </Paper>
-              </Grid>
               <Grid item md={12}>
                 {lobbyInfo ?
                   <Grid container direction='row' spacing={1}>
@@ -172,9 +184,48 @@ export default function Lobby() {
                 }
               </Grid>
             </Grid>
+            <Grid>
+              <Grid container direction='row' spacing={2}>
+                <Grid item md={12}>
+                  <Paper className={classes.title} elevation={1} square>
+                    <Box p={0.5}>CHAT</Box>
+                  </Paper>
+                </Grid>
+                <Grid item md={12}>
+                  <ChatLayout user={userInfo}/>
+                </Grid>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
+
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Invite a loser to join your game
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Email Address"
+            type="email"
+            fullWidth
+            value={inviteUser}
+            onChange={event => setInviteUser(event.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleInvite} color="primary">
+            Invite
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Grid>
     </>
   )
