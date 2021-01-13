@@ -49,14 +49,17 @@ export default function Home({userInfo}) {
 
   function findMatch() {
     if (isInitialized) {
-      socket.emit()
+      socket.emit(LOBBY_EVENT.FIND_LOBBY);
     }
   }
 
   useEffect(() => {
     socket.on(LOBBY_EVENT.CREATE_LOBBY, ({roomId, player}) => {
       history.push(`/l/${roomId}`);
-    })
+    });
+    socket.on(LOBBY_EVENT.LOBBY_FOUND, ({competitor, roomId}) => {
+      history.push(`/l/${roomId}`);
+    });
   }, [isInitialized]);
 
   return (
