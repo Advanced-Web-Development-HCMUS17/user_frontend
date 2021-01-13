@@ -13,10 +13,7 @@ function App() {
     <BrowserRouter><AuthProvider>
       <SocketProvider>
         <UserStatusProvider>
-          <NavigationBar/>
-          <Container maxWidth={false}>
-            <IndexComponent/>
-          </Container>
+          <IndexComponent/>
         </UserStatusProvider>
       </SocketProvider>
     </AuthProvider></BrowserRouter>

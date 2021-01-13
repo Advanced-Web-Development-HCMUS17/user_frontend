@@ -4,13 +4,12 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
-import {useHistory} from "react-router";
-import {Link} from 'react-router-dom';
-import accountService from "../service/account-service";
+import {useHistory, useParams} from "react-router";
+import AccountServices from "../../service/account-service";
 import {CircularProgress} from "@material-ui/core";
-import Template1 from "./resetPassword/Template1";
-import validator from "../service/data-validator";
-import {CSnackbars, TYPE} from "./userAuthentication/CSnackBar";
+import Template1 from "./Template1";
+import validator from "../../service/data-validator";
+import {CSnackbars, TYPE} from "../userAuthentication/CSnackBar";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,53 +28,44 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function RegisterPage() {
-  const [email, setEmail] = useState('');
+  const {email, code} = useParams();
   const [password, setPassword] = useState('');
-  const [userName, setUserName] = useState('');
   const [inProgress, setInProgress] = useState(false);
   const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState('Warning');
+  const [title, setTitle] = useState("Warning");
   const [message, setMessage] = useState('');
   const [redirect, setRedirect] = useState(false);
   const history = useHistory();
   const classes = useStyles();
 
-  const register = async (event) => {
+  const handleUpdatePassword = async (event) => {
     event.preventDefault();
-    if (email.length === 0 || !validator.email(email)) {
-      setTitle(TYPE.WARNING);
-      setMessage("Please enter valid email");
-      setRedirect(false);
-      return setOpen(true);
-    }
-    if (!validator.password(password)) {
+    if (password.length === 0 || !validator.password(password)) {
       setTitle(TYPE.WARNING);
       setMessage("Password must have at least 8 characters includes: 1 letter, 1 number and 1 special character");
       setRedirect(false);
       return setOpen(true);
     }
     setInProgress(true);
-    const response = await accountService.register(userName, email, password);
+    const response = await AccountServices.updatePassword(email, code, password);
     setInProgress(false);
-    if (response) {
-      if (response.error) {
-        setTitle(TYPE.ERROR);
-        setMessage(response.message);
-        setRedirect(false);
-        setOpen(true);
-      } else {
-        setTitle(TYPE.SUCCESS);
-        setMessage("An verify email has sent to: " + email);
-        setRedirect(true);
-        setOpen(true);
-      }
+    if (response.error) {
+      setTitle(TYPE.ERROR);
+      setMessage(response.message);
+      setRedirect(false);
+      setOpen(true);
+    } else {
+      setTitle(TYPE.SUCCESS);
+      setMessage("Update password successfully");
+      setRedirect(true);
+      setOpen(true);
     }
   }
 
   const childComponent = (
     <div className={classes.paper}>
       <Typography component="h1" variant="h5">
-        Sign up
+        Update password
       </Typography>
       <form className={classes.form} noValidate>
         <Grid container spacing={2}>
@@ -83,28 +73,15 @@ export default function RegisterPage() {
             <TextField
               variant="outlined"
               required
-              autoFocus
               fullWidth
+              name="Email"
+              label="Email"
+              type="email"
               id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
               value={email}
-              onInput={e => setEmail(String(e.target.value))}
-              onClick={() => setEmail('')}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              autoComplete="fname"
-              name="firstName"
-              variant="outlined"
-              fullWidth
-              id="firstName"
-              label="Your Name"
-              value={userName}
-              onInput={e => setUserName(String(e.target.value))}
-              onClick={() => setUserName('')}
+              disabled
+              onInput={e => setPassword(String(e.target.value))}
+              onClick={() => setPassword('')}
             />
           </Grid>
           <Grid item xs={12}>
@@ -130,28 +107,21 @@ export default function RegisterPage() {
           color="primary"
           className={classes.submit}
           disabled={inProgress}
-          onClick={(e) => register(e)}
+          onClick={(e) => handleUpdatePassword(e)}
         >
           {inProgress ? <CircularProgress/> : "Sign Up"}
         </Button>
-        <Grid container justify="flex-end">
-          <Grid item>
-            <Link to="/login" variant="body2">
-              Already have an account? Sign in
-            </Link>
-          </Grid>
-        </Grid>
       </form>
     </div>
   );
 
   return (
-    <div>
+    <>
       <Template1 childComponent={childComponent}/>
-      <CSnackbars open={open} type={title} message={message} duration={redirect ? 3000 : 5000} handleClose={() => {
+      <CSnackbars open={open} type={title} message={message} handleClose={() => {
         setOpen(false);
         redirect && history.push("/login");
       }}/>
-    </div>
+    </>
   );
 }

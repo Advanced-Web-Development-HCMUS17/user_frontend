@@ -6,8 +6,10 @@ export const LOBBY_EVENT = {
   DELETE_LOBBY: 'lobby/delete',
   LEAVE_LOBBY: 'lobby/leave',
   LOBBY_INFO: 'lobby/info',
-  INVITE: 'lobby/invite'
-};
+  INVITE: 'lobby/invite',
+  FIND_LOBBY: 'lobby/find',
+  LOBBY_FOUND: 'lobby/found',
+}
 
 export const GAME_EVENT = {
   GAME_READY: 'game/ready',
@@ -22,7 +24,7 @@ export const HOME_EVENT = {
 
 export const REPLAY_EVENT = {
   GET_LOBBIES: 'replay/lobbies',
-  
+
 }
 
 export const PLAYER_1 = "p1";

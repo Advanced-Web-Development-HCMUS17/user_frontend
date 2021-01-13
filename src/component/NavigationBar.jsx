@@ -1,5 +1,5 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,8 +10,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import {useAuth} from "./useAuth";
-import Box from "@material-ui/core/Box";
-import {NavLink} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,18 +26,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavigationBar() {
   const classes = useStyles();
+  const history = useHistory();
+  const {logout} = useAuth();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const history = useHistory();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleViewProfile = () => {
     setAnchorEl(null);
+    history.push("/profile");
   };
-  const {logout} = useAuth();
+
   const handleLogout = () => {
     setAnchorEl(null);
     logout();
@@ -83,9 +83,9 @@ export default function NavigationBar() {
                 horizontal: 'right',
               }}
               open={open}
-              onClose={handleClose}
+              onClose={() => setAnchorEl(null)}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleViewProfile}>Profile</MenuItem>
               <MenuItem onClick={handleHistory}>History</MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>

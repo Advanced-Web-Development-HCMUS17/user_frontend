@@ -11,7 +11,8 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Box from "@material-ui/core/Box";
 import Game from "../game/Game";
 import ChatLayout from "../chat";
-import {useAuth} from '../useAuth';
+import { useAuth } from '../useAuth';
+import NavigationBar from "../NavigationBar";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
@@ -28,7 +29,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     backgroundColor: `#3F51B5`,
-    color: `#ffffff`
+    color: `#ffffff`,
+  },
+  rootContainer:{
+    paddingInline: "25px",
   }
 }));
 
@@ -100,7 +104,9 @@ export default function Lobby() {
   }
 
   return (
-    <Grid container direction='column' spacing={1}>
+    <>
+    <NavigationBar/>
+    <Grid container direction='column' spacing={1} className={classes.rootContainer}>
       <Grid item md={12}>
         <Grid container direction='row' spacing={1}>
           <Grid item md={9}>
@@ -224,5 +230,6 @@ export default function Lobby() {
         </DialogActions>
       </Dialog>
     </Grid>
+    </>
   )
 }

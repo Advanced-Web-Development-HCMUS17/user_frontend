@@ -25,9 +25,9 @@ const AuthContext = React.createContext(
 const {Provider} = AuthContext;
 
 export function AuthProvider({children}) {
-  const [token, setToken] = useState('');
-  const [userInfo, setUserInfo] = useState('');
-  const [isAuth, setIsAuth] = useState(false);
+  const [token, setToken] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
+  const [isAuth, setIsAuth] = useState(null);
 
   async function fetchUserInfo(token) {
     const userInfo = await AccountServices.getUserInfo(token);
@@ -57,7 +57,13 @@ export function AuthProvider({children}) {
 
   useEffect(() => {
     const storageToken = localStorage.getItem(LS_TOKEN_KEY);
-    fetchUserInfo(storageToken);
+    if (storageToken && storageToken.length > 0) {
+      fetchUserInfo(storageToken);
+    } else {
+      setToken(null);
+      setUserInfo(null);
+      setIsAuth(false);
+    }
   }, []);
 
   return (
